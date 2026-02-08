@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="screenshot.png" alt="DevManager Screenshot" width="800"/>
+  <img src="ScreenShot.png" alt="DevManager Screenshot" width="800"/>
 </p>
 
 <h1 align="center">DevManager</h1>
