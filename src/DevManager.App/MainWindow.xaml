@@ -60,6 +60,19 @@
                             Margin="4,0"/>
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
                                Margin="8,4" Background="#55FFFFFF"/>
+                    <!-- Language Selector -->
+                    <ComboBox x:Name="CmbLanguage"
+                              SelectedIndex="{Binding SelectedLanguageIndex}"
+                              Width="80" Margin="4,0"
+                              VerticalAlignment="Center"
+                              FontSize="12"
+                              Foreground="White"
+                              SelectionChanged="CmbLanguage_SelectionChanged">
+                        <ComboBoxItem Content="🇹🇷 TR" Tag="tr"/>
+                        <ComboBoxItem Content="🇬🇧 EN" Tag="en"/>
+                        <ComboBoxItem Content="🇩🇪 DE" Tag="de"/>
+                        <ComboBoxItem Content="🇫🇷 FR" Tag="fr"/>
+                    </ComboBox>
                     <Button Content="{materialDesign:PackIcon Kind=InformationOutline}"
                             ToolTip="{x:Static strings:Strings.Menu_About}"
                             Command="{Binding ShowAboutCommand}"

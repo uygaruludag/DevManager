@@ -344,4 +344,10 @@
   <data name="Process_OrphanLogNote" xml:space="preserve">
     <value>Canlı log bu oturum için kullanılamaz - process yeniden başlatılırsa loglar görünür</value>
   </data>
+  <data name="Language_RestartRequired" xml:space="preserve">
+    <value>Dil değişikliği uygulanması için uygulama yeniden başlatılacak.</value>
+  </data>
+  <data name="Language_RestartTitle" xml:space="preserve">
+    <value>Dil Değişikliği</value>
+  </data>
 </root>

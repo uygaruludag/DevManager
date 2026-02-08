@@ -333,4 +333,10 @@
   <data name="Process_OrphanLogNote">
     <value>Les logs en direct ne sont pas disponibles pour cette session - les logs apparaîtront au redémarrage du processus</value>
   </data>
+  <data name="Language_RestartRequired">
+    <value>L'application va redémarrer pour appliquer le changement de langue.</value>
+  </data>
+  <data name="Language_RestartTitle">
+    <value>Changement de Langue</value>
+  </data>
 </root>

@@ -344,4 +344,10 @@
   <data name="Process_OrphanLogNote" xml:space="preserve">
     <value>Live logs are not available for this session - logs will appear when process is restarted</value>
   </data>
+  <data name="Language_RestartRequired" xml:space="preserve">
+    <value>The application will restart to apply the language change.</value>
+  </data>
+  <data name="Language_RestartTitle" xml:space="preserve">
+    <value>Language Change</value>
+  </data>
 </root>

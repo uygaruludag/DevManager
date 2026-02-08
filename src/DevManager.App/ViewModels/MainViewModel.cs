@@ -1,4 +1,6 @@
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -21,12 +23,17 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private bool _isLoading = true;
 
+    [ObservableProperty]
+    private int _selectedLanguageIndex;
+
     public ObservableCollection<ProjectGroupViewModel> Projects { get; } = [];
 
     public bool HasSelectedProject => SelectedProject != null;
 
     public int TotalRunning => Projects.Sum(p => p.RunningCount);
     public int TotalProcesses => Projects.Sum(p => p.TotalCount);
+
+    private static readonly string[] LanguageCodes = ["tr", "en", "de", "fr"];
 
     public MainViewModel(
         IConfigurationService configService,
@@ -36,6 +43,11 @@ public partial class MainViewModel : ObservableObject
         _configService = configService;
         _processManager = processManager;
         _logService = logService;
+
+        // Mevcut dili seç
+        var currentLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        _selectedLanguageIndex = Array.IndexOf(LanguageCodes, currentLang);
+        if (_selectedLanguageIndex < 0) _selectedLanguageIndex = 0;
     }
 
     [RelayCommand]
@@ -168,6 +180,36 @@ public partial class MainViewModel : ObservableObject
 
         SelectedProject.RemoveProcess(processVm);
         _ = SaveConfigAsync();
+    }
+
+    [RelayCommand]
+    private async Task ChangeLanguageAsync(int index)
+    {
+        if (index < 0 || index >= LanguageCodes.Length) return;
+
+        var newLang = LanguageCodes[index];
+        var currentLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+        if (newLang == currentLang) return;
+
+        // Config'e kaydet
+        var config = await _configService.LoadAsync();
+        config.Settings.Language = newLang;
+        await _configService.SaveAsync(config);
+
+        // Kullanıcıya bilgi ver ve uygulamayı yeniden başlat
+        MessageBox.Show(
+            Strings.Language_RestartRequired,
+            Strings.Language_RestartTitle,
+            MessageBoxButton.OK,
+            MessageBoxImage.Information);
+
+        // Uygulamayı yeniden başlat
+        var exePath = Environment.ProcessPath;
+        if (exePath != null)
+        {
+            Process.Start(exePath);
+            Application.Current.Shutdown();
+        }
     }
 
     private async Task SaveConfigAsync()

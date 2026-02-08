@@ -932,5 +932,17 @@ namespace DevManager.App.Localization {
                 return ResourceManager.GetString("Process_OrphanLogNote", resourceCulture);
             }
         }
+
+        public static string Language_RestartRequired {
+            get {
+                return ResourceManager.GetString("Language_RestartRequired", resourceCulture);
+            }
+        }
+
+        public static string Language_RestartTitle {
+            get {
+                return ResourceManager.GetString("Language_RestartTitle", resourceCulture);
+            }
+        }
     }
 }

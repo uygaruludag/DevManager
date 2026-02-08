@@ -39,6 +39,23 @@ public partial class MainWindow : Window
         };
     }
 
+    private bool _languageInitialized;
+
+    private void CmbLanguage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        // İlk yüklemede tetiklenmesin
+        if (!_languageInitialized)
+        {
+            _languageInitialized = true;
+            return;
+        }
+
+        if (DataContext is MainViewModel vm && sender is ComboBox cmb)
+        {
+            vm.ChangeLanguageCommand.Execute(cmb.SelectedIndex);
+        }
+    }
+
     private void LogList_Loaded(object sender, RoutedEventArgs e)
     {
         if (sender is not ListBox listBox) return;

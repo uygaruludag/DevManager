@@ -333,4 +333,10 @@
   <data name="Process_OrphanLogNote">
     <value>Live-Logs sind für diese Sitzung nicht verfügbar - Logs werden beim Neustart des Prozesses angezeigt</value>
   </data>
+  <data name="Language_RestartRequired">
+    <value>Die Anwendung wird neu gestartet, um die Sprachänderung anzuwenden.</value>
+  </data>
+  <data name="Language_RestartTitle">
+    <value>Sprachänderung</value>
+  </data>
 </root>
