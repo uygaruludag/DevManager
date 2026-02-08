@@ -1,0 +1,320 @@
+<Window x:Class="DevManager.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:DevManager.App.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainViewModel}"
+        Title="DevManager" Height="700" Width="1100"
+        MinHeight="500" MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Normal"
+        Topmost="False"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Background="{DynamicResource MaterialDesignPaper}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Top Toolbar -->
+        <materialDesign:ColorZone Grid.Row="0" Mode="PrimaryDark" Padding="12,8"
+                                   materialDesign:ElevationAssist.Elevation="Dp4">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Console" Width="28" Height="28"
+                                              VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="DevManager" FontSize="20" FontWeight="Bold"
+                               VerticalAlignment="Center" Margin="0,0,16,0"/>
+                    <TextBlock VerticalAlignment="Center" Opacity="0.7" Margin="0,0,0,0">
+                        <Run Text="{Binding TotalRunning, Mode=OneWay}"/>
+                        <Run Text="/"/>
+                        <Run Text="{Binding TotalProcesses, Mode=OneWay}"/>
+                        <Run Text=" running"/>
+                    </TextBlock>
+                </StackPanel>
+
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Content="{materialDesign:PackIcon Kind=PlayCircle}"
+                            ToolTip="Start All"
+                            Command="{Binding StartAllCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Foreground="{DynamicResource MaterialDesignPaper}"
+                            Margin="4,0"/>
+                    <Button Content="{materialDesign:PackIcon Kind=StopCircleOutline}"
+                            ToolTip="Stop All"
+                            Command="{Binding StopAllCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Foreground="{DynamicResource MaterialDesignPaper}"
+                            Margin="4,0"/>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+
+        <!-- Main Content -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="260"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Sidebar: Project List -->
+            <Border Grid.Column="0" BorderThickness="0,0,1,0"
+                    BorderBrush="{DynamicResource MaterialDesignDivider}"
+                    Background="{DynamicResource MaterialDesignCardBackground}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" Margin="12,12,12,8">
+                        <TextBlock Text="PROJECTS" FontWeight="Bold" FontSize="12"
+                                   Opacity="0.6" Margin="0,0,0,8"/>
+                    </StackPanel>
+
+                    <Button DockPanel.Dock="Bottom"
+                            Content="+ Proje Ekle"
+                            Command="{Binding AddProjectCommand}"
+                            Style="{StaticResource MaterialDesignOutlinedButton}"
+                            Margin="12,8,12,12"
+                            HorizontalAlignment="Stretch"/>
+
+                    <ListBox ItemsSource="{Binding Projects}"
+                             SelectedItem="{Binding SelectedProject}"
+                             Margin="0,0,0,0"
+                             Background="Transparent"
+                             BorderThickness="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="{x:Type vm:ProjectGroupViewModel}">
+                                <Grid Margin="8,6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Grid.Column="0" Width="10" Height="10"
+                                             Margin="0,0,10,0" VerticalAlignment="Center">
+                                        <Ellipse.Fill>
+                                            <SolidColorBrush Color="{Binding Color}"/>
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                    <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                               FontSize="14" VerticalAlignment="Center"
+                                               Margin="0,0,12,0"/>
+                                    <TextBlock Grid.Column="2" Text="{Binding StatusText}"
+                                               FontSize="12" Opacity="0.6"
+                                               VerticalAlignment="Center"
+                                               Margin="4,0,4,0"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </Border>
+
+            <!-- Right: Selected Project Details -->
+            <Grid Grid.Column="1">
+                <!-- No project selected -->
+                <TextBlock Text="Bir proje seçin veya yeni proje ekleyin"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"
+                           Opacity="0.5" FontSize="16"
+                           Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}, ConverterParameter=Invert}"/>
+
+                <!-- Project content -->
+                <DockPanel Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}}">
+                    <!-- Project header -->
+                    <Border DockPanel.Dock="Top" Padding="16,12"
+                            Background="{DynamicResource MaterialDesignCardBackground}"
+                            BorderThickness="0,0,0,1"
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                <TextBlock Text="{Binding SelectedProject.Name}"
+                                           FontSize="18" FontWeight="SemiBold"
+                                           VerticalAlignment="Center" Margin="0,0,12,0"/>
+                                <TextBlock Text="{Binding SelectedProject.StatusText}"
+                                           FontSize="14" Opacity="0.6"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <Button ToolTip="Tüm süreçleri başlat"
+                                        Command="{Binding SelectedProject.StartAllCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="PlayCircleOutline" Width="24" Height="24"/>
+                                </Button>
+                                <Button ToolTip="Tüm süreçleri durdur"
+                                        Command="{Binding SelectedProject.StopAllCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="StopCircleOutline" Width="24" Height="24"/>
+                                </Button>
+                                <Button ToolTip="Tüm süreçleri yeniden başlat"
+                                        Command="{Binding SelectedProject.RestartAllCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="Refresh" Width="24" Height="24"/>
+                                </Button>
+                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
+                                           Margin="8,4"/>
+                                <Button ToolTip="Süreç Ekle"
+                                        Command="{Binding AddProcessCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="Plus" Width="24" Height="24"/>
+                                </Button>
+                                <Button ToolTip="Projeyi Sil"
+                                        Command="{Binding DeleteProjectCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Foreground="#F44336"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="DeleteOutline" Width="24" Height="24"/>
+                                </Button>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- Process list -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" Padding="12">
+                        <ItemsControl ItemsSource="{Binding SelectedProject.Processes}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:ProcessViewModel}">
+                                    <!-- Process Card -->
+                                    <materialDesign:Card Margin="4,4,4,8" Padding="0"
+                                                          materialDesign:ElevationAssist.Elevation="Dp2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!-- Process Header -->
+                                            <Border Grid.Row="0" Padding="12,8"
+                                                    Background="{DynamicResource MaterialDesignCardBackground}">
+                                                <DockPanel>
+                                                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                                        <!-- Status dot -->
+                                                        <Ellipse Width="12" Height="12"
+                                                                 Fill="{Binding State, Converter={StaticResource StateToColorConverter}}"
+                                                                 Margin="0,0,8,0"
+                                                                 VerticalAlignment="Center"/>
+                                                        <TextBlock Text="{Binding Name}" FontSize="15"
+                                                                   FontWeight="SemiBold"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="0,0,12,0"/>
+                                                        <TextBlock Text="{Binding State, Converter={StaticResource StateToTextConverter}}"
+                                                                   FontSize="12" Opacity="0.7"
+                                                                   VerticalAlignment="Center"
+                                                                   Margin="0,0,8,0"/>
+                                                        <TextBlock FontSize="12" Opacity="0.5"
+                                                                   VerticalAlignment="Center"
+                                                                   Visibility="{Binding ProcessId, Converter={StaticResource BoolToVisConverter}}">
+                                                            <Run Text="PID:"/>
+                                                            <Run Text="{Binding ProcessId, Mode=OneWay}"/>
+                                                        </TextBlock>
+                                                        <TextBlock Text="{Binding Uptime}" FontSize="12"
+                                                                   Opacity="0.5" VerticalAlignment="Center"
+                                                                   Margin="8,0,0,0"/>
+                                                    </StackPanel>
+
+                                                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                                        <Button ToolTip="Start"
+                                                                Command="{Binding StartCommand}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="Play" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="Stop"
+                                                                Command="{Binding StopCommand}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="Stop" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="Restart"
+                                                                Command="{Binding RestartCommand}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="Refresh" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="Logları Temizle"
+                                                                Command="{Binding ClearLogsCommand}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="DeleteSweep" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="Logları Kopyala"
+                                                                Command="{Binding CopyLogsCommand}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="Süreci Sil"
+                                                                Command="{Binding DataContext.DeleteProcessCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Foreground="#F44336"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="Close" Width="18" Height="18"/>
+                                                        </Button>
+                                                    </StackPanel>
+                                                </DockPanel>
+                                            </Border>
+
+                                            <!-- Restart indicator -->
+                                            <Border Grid.Row="1" Padding="12,2"
+                                                    Background="#33FF9800"
+                                                    Visibility="{Binding RestartCount, Converter={StaticResource BoolToVisConverter}}">
+                                                <TextBlock FontSize="11" Opacity="0.8">
+                                                    <Run Text="Restart count:"/>
+                                                    <Run Text="{Binding RestartCount, Mode=OneWay}"/>
+                                                </TextBlock>
+                                            </Border>
+
+                                            <!-- Log Area -->
+                                            <Border Grid.Row="2" Background="#1A1A2E" MinHeight="120" MaxHeight="250">
+                                                <ListBox ItemsSource="{Binding LogEntries}"
+                                                         x:Name="LogList"
+                                                         Background="Transparent"
+                                                         BorderThickness="0"
+                                                         FontFamily="Consolas"
+                                                         FontSize="12"
+                                                         VirtualizingPanel.IsVirtualizing="True"
+                                                         VirtualizingPanel.VirtualizationMode="Recycling"
+                                                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                                         Loaded="LogList_Loaded">
+                                                    <ListBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Margin="0,1">
+                                                                <Run Text="{Binding Timestamp, StringFormat='[HH:mm:ss] ', Mode=OneWay}"
+                                                                     Foreground="#666"/>
+                                                                <Run Text="{Binding Text, Mode=OneWay}"
+                                                                     Foreground="{Binding Type, Converter={StaticResource LogTypeToColorConverter}}"/>
+                                                            </TextBlock>
+                                                        </DataTemplate>
+                                                    </ListBox.ItemTemplate>
+                                                    <ListBox.ItemContainerStyle>
+                                                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource MaterialDesignListBoxItem}">
+                                                            <Setter Property="Padding" Value="8,0"/>
+                                                            <Setter Property="MinHeight" Value="0"/>
+                                                        </Style>
+                                                    </ListBox.ItemContainerStyle>
+                                                </ListBox>
+                                            </Border>
+                                        </Grid>
+                                    </materialDesign:Card>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </DockPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
