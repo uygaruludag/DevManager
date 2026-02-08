@@ -1,5 +1,5 @@
 using System.Windows;
-using DevManager.App.Resources.Strings;
+using DevManager.App.Localization;
 using DevManager.Core.Models;
 using Microsoft.Win32;
 using WinForms = System.Windows.Forms;

@@ -1,7 +1,7 @@
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
-using DevManager.App.Resources.Strings;
+using DevManager.App.Localization;
 using DevManager.App.ViewModels;
 using DevManager.Core.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;

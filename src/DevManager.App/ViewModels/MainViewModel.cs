@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DevManager.App.Resources.Strings;
+using DevManager.App.Localization;
 using DevManager.Core.Models;
 using DevManager.Core.Services.Interfaces;
 

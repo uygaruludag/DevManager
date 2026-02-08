@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DevManager.App.Resources.Strings {
+namespace DevManager.App.Localization {
     using System;
 
 

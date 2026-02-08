@@ -2,7 +2,7 @@ using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
-using DevManager.App.Resources.Strings;
+using DevManager.App.Localization;
 using DevManager.Core.Services;
 using DevManager.Core.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,7 +1,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using DevManager.Core.Models;
-using Loc = DevManager.App.Resources.Strings.Strings;
+using Loc = DevManager.App.Localization.Strings;
 
 namespace DevManager.App.Resources.Converters;
 

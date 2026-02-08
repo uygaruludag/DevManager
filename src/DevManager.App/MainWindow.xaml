@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:DevManager.App.ViewModels"
-        xmlns:strings="clr-namespace:DevManager.App.Resources.Strings"
+        xmlns:strings="clr-namespace:DevManager.App.Localization"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
         Icon="app.ico"

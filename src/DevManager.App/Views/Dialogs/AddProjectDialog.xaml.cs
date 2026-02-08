@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using DevManager.Core.Models;
-using DevManager.App.Resources.Strings;
+using DevManager.App.Localization;
 using DevManager.Core.Services;
 using WinForms = System.Windows.Forms;
 
