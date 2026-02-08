@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:vm="clr-namespace:DevManager.App.ViewModels"
+        xmlns:strings="clr-namespace:DevManager.App.Resources.Strings"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
+        Icon="app.ico"
         Title="DevManager" Height="700" Width="1100"
         MinHeight="500" MinWidth="800"
         WindowStartupLocation="CenterScreen"
@@ -39,19 +41,19 @@
                         <Run Text="{Binding TotalRunning, Mode=OneWay}"/>
                         <Run Text="/"/>
                         <Run Text="{Binding TotalProcesses, Mode=OneWay}"/>
-                        <Run Text=" running"/>
+                        <Run Text="{x:Static strings:Strings.App_Running}"/>
                     </TextBlock>
                 </StackPanel>
 
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
                     <Button Content="{materialDesign:PackIcon Kind=PlayCircle}"
-                            ToolTip="Start All"
+                            ToolTip="{x:Static strings:Strings.Menu_StartAll}"
                             Command="{Binding StartAllCommand}"
                             Style="{StaticResource MaterialDesignIconForegroundButton}"
                             Foreground="{DynamicResource MaterialDesignPaper}"
                             Margin="4,0"/>
                     <Button Content="{materialDesign:PackIcon Kind=StopCircleOutline}"
-                            ToolTip="Stop All"
+                            ToolTip="{x:Static strings:Strings.Menu_StopAll}"
                             Command="{Binding StopAllCommand}"
                             Style="{StaticResource MaterialDesignIconForegroundButton}"
                             Foreground="{DynamicResource MaterialDesignPaper}"
@@ -59,7 +61,7 @@
                     <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
                                Margin="8,4" Background="#55FFFFFF"/>
                     <Button Content="{materialDesign:PackIcon Kind=InformationOutline}"
-                            ToolTip="Hakkında"
+                            ToolTip="{x:Static strings:Strings.Menu_About}"
                             Command="{Binding ShowAboutCommand}"
                             Style="{StaticResource MaterialDesignIconForegroundButton}"
                             Foreground="{DynamicResource MaterialDesignPaper}"
@@ -81,12 +83,12 @@
                     Background="{DynamicResource MaterialDesignCardBackground}">
                 <DockPanel>
                     <StackPanel DockPanel.Dock="Top" Margin="12,12,12,8">
-                        <TextBlock Text="PROJECTS" FontWeight="Bold" FontSize="12"
+                        <TextBlock Text="{x:Static strings:Strings.Projects_Header}" FontWeight="Bold" FontSize="12"
                                    Opacity="0.6" Margin="0,0,0,8"/>
                     </StackPanel>
 
                     <Button DockPanel.Dock="Bottom"
-                            Content="+ Proje Ekle"
+                            Content="{x:Static strings:Strings.Projects_AddProject}"
                             Command="{Binding AddProjectCommand}"
                             Style="{StaticResource MaterialDesignOutlinedButton}"
                             Margin="12,8,12,12"
@@ -128,7 +130,7 @@
             <!-- Right: Selected Project Details -->
             <Grid Grid.Column="1">
                 <!-- No project selected -->
-                <TextBlock Text="Bir proje seçin veya yeni proje ekleyin"
+                <TextBlock Text="{x:Static strings:Strings.Projects_SelectPrompt}"
                            HorizontalAlignment="Center" VerticalAlignment="Center"
                            Opacity="0.5" FontSize="16"
                            Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}, ConverterParameter=Invert}"/>
@@ -151,19 +153,19 @@
                             </StackPanel>
 
                             <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                <Button ToolTip="Tüm süreçleri başlat"
+                                <Button ToolTip="{x:Static strings:Strings.Project_StartAll}"
                                         Command="{Binding SelectedProject.StartAllCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         Margin="2,0">
                                     <materialDesign:PackIcon Kind="PlayCircleOutline" Width="24" Height="24"/>
                                 </Button>
-                                <Button ToolTip="Tüm süreçleri durdur"
+                                <Button ToolTip="{x:Static strings:Strings.Project_StopAll}"
                                         Command="{Binding SelectedProject.StopAllCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         Margin="2,0">
                                     <materialDesign:PackIcon Kind="StopCircleOutline" Width="24" Height="24"/>
                                 </Button>
-                                <Button ToolTip="Tüm süreçleri yeniden başlat"
+                                <Button ToolTip="{x:Static strings:Strings.Project_RestartAll}"
                                         Command="{Binding SelectedProject.RestartAllCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         Margin="2,0">
@@ -171,13 +173,13 @@
                                 </Button>
                                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
                                            Margin="8,4"/>
-                                <Button ToolTip="Süreç Ekle"
+                                <Button ToolTip="{x:Static strings:Strings.Project_AddProcess}"
                                         Command="{Binding AddProcessCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         Margin="2,0">
                                     <materialDesign:PackIcon Kind="Plus" Width="24" Height="24"/>
                                 </Button>
-                                <Button ToolTip="Projeyi Sil"
+                                <Button ToolTip="{x:Static strings:Strings.Project_Delete}"
                                         Command="{Binding DeleteProjectCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         Foreground="#F44336"
@@ -261,37 +263,37 @@
                                                     </StackPanel>
 
                                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                                                        <Button ToolTip="Start"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_Start}"
                                                                 Command="{Binding StartCommand}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="Play" Width="18" Height="18"/>
                                                         </Button>
-                                                        <Button ToolTip="Stop"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_Stop}"
                                                                 Command="{Binding StopCommand}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="Stop" Width="18" Height="18"/>
                                                         </Button>
-                                                        <Button ToolTip="Restart"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_Restart}"
                                                                 Command="{Binding RestartCommand}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="Refresh" Width="18" Height="18"/>
                                                         </Button>
-                                                        <Button ToolTip="Logları Temizle"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_ClearLogs}"
                                                                 Command="{Binding ClearLogsCommand}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="DeleteSweep" Width="18" Height="18"/>
                                                         </Button>
-                                                        <Button ToolTip="Logları Kopyala"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_CopyLogs}"
                                                                 Command="{Binding CopyLogsCommand}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
                                                         </Button>
-                                                        <Button ToolTip="Süreci Sil"
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_Delete}"
                                                                 Command="{Binding DataContext.DeleteProcessCommand, RelativeSource={RelativeSource AncestorType=Window}}"
                                                                 CommandParameter="{Binding}"
                                                                 Style="{StaticResource MaterialDesignIconButton}"
@@ -308,7 +310,7 @@
                                                     Background="#33FF9800"
                                                     Visibility="{Binding RestartCount, Converter={StaticResource BoolToVisConverter}}">
                                                 <TextBlock FontSize="11" Opacity="0.8">
-                                                    <Run Text="Restart count:"/>
+                                                    <Run Text="{x:Static strings:Strings.Process_RestartCount}"/>
                                                     <Run Text="{Binding RestartCount, Mode=OneWay}"/>
                                                 </TextBlock>
                                             </Border>

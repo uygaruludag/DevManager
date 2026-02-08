@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- App-level -->
+  <data name="App_Title" xml:space="preserve">
+    <value>DevManager</value>
+  </data>
+  <data name="App_Running" xml:space="preserve">
+    <value>çalışıyor</value>
+  </data>
+
+  <!-- Top menu -->
+  <data name="Menu_StartAll" xml:space="preserve">
+    <value>Tümünü Başlat</value>
+  </data>
+  <data name="Menu_StopAll" xml:space="preserve">
+    <value>Tümünü Durdur</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>Hakkında</value>
+  </data>
+
+  <!-- Projects sidebar -->
+  <data name="Projects_Header" xml:space="preserve">
+    <value>PROJELER</value>
+  </data>
+  <data name="Projects_AddProject" xml:space="preserve">
+    <value>+ Proje Ekle</value>
+  </data>
+  <data name="Projects_SelectPrompt" xml:space="preserve">
+    <value>Bir proje seçin veya yeni proje ekleyin</value>
+  </data>
+
+  <!-- Project header -->
+  <data name="Project_StartAll" xml:space="preserve">
+    <value>Tüm süreçleri başlat</value>
+  </data>
+  <data name="Project_StopAll" xml:space="preserve">
+    <value>Tüm süreçleri durdur</value>
+  </data>
+  <data name="Project_RestartAll" xml:space="preserve">
+    <value>Tüm süreçleri yeniden başlat</value>
+  </data>
+  <data name="Project_AddProcess" xml:space="preserve">
+    <value>Süreç Ekle</value>
+  </data>
+  <data name="Project_Delete" xml:space="preserve">
+    <value>Projeyi Sil</value>
+  </data>
+  <data name="Project_DeleteConfirm" xml:space="preserve">
+    <value>'{0}' projesini silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="Project_DeleteTitle" xml:space="preserve">
+    <value>Proje Sil</value>
+  </data>
+
+  <!-- Process card -->
+  <data name="Process_Start" xml:space="preserve">
+    <value>Başlat</value>
+  </data>
+  <data name="Process_Stop" xml:space="preserve">
+    <value>Durdur</value>
+  </data>
+  <data name="Process_Restart" xml:space="preserve">
+    <value>Yeniden Başlat</value>
+  </data>
+  <data name="Process_ClearLogs" xml:space="preserve">
+    <value>Logları Temizle</value>
+  </data>
+  <data name="Process_CopyLogs" xml:space="preserve">
+    <value>Logları Kopyala</value>
+  </data>
+  <data name="Process_Delete" xml:space="preserve">
+    <value>Süreci Sil</value>
+  </data>
+  <data name="Process_DeleteConfirm" xml:space="preserve">
+    <value>'{0}' sürecini silmek istediğinize emin misiniz?</value>
+  </data>
+  <data name="Process_DeleteTitle" xml:space="preserve">
+    <value>Süreç Sil</value>
+  </data>
+  <data name="Process_RestartCount" xml:space="preserve">
+    <value>Yeniden başlatma sayısı:</value>
+  </data>
+
+  <!-- Process states -->
+  <data name="State_Running" xml:space="preserve">
+    <value>Çalışıyor</value>
+  </data>
+  <data name="State_Stopped" xml:space="preserve">
+    <value>Durduruldu</value>
+  </data>
+  <data name="State_Starting" xml:space="preserve">
+    <value>Başlatılıyor...</value>
+  </data>
+  <data name="State_Stopping" xml:space="preserve">
+    <value>Durduruluyor...</value>
+  </data>
+  <data name="State_Crashed" xml:space="preserve">
+    <value>Çöktü</value>
+  </data>
+  <data name="State_Restarting" xml:space="preserve">
+    <value>Yeniden Başlatılıyor...</value>
+  </data>
+  <data name="State_Unknown" xml:space="preserve">
+    <value>Bilinmiyor</value>
+  </data>
+
+  <!-- Add Project Dialog -->
+  <data name="Dialog_AddProject_Title" xml:space="preserve">
+    <value>Yeni Proje Ekle</value>
+  </data>
+  <data name="Dialog_AddProject_Header" xml:space="preserve">
+    <value>Yeni Proje</value>
+  </data>
+  <data name="Dialog_AddProject_PathHint" xml:space="preserve">
+    <value>Proje Klasör Yolu (ör: D:\source\project)</value>
+  </data>
+  <data name="Dialog_AddProject_BrowseFolder" xml:space="preserve">
+    <value>Klasör Seç</value>
+  </data>
+  <data name="Dialog_AddProject_Scan" xml:space="preserve">
+    <value>Tara</value>
+  </data>
+  <data name="Dialog_AddProject_ScanTooltip" xml:space="preserve">
+    <value>Projeleri otomatik tespit et</value>
+  </data>
+  <data name="Dialog_AddProject_NameHint" xml:space="preserve">
+    <value>Proje Adı</value>
+  </data>
+  <data name="Dialog_AddProject_Color" xml:space="preserve">
+    <value>Renk:</value>
+  </data>
+  <data name="Dialog_AddProject_AutoStart" xml:space="preserve">
+    <value>Uygulama açıldığında otomatik başlat</value>
+  </data>
+  <data name="Dialog_AddProject_ScanPrompt" xml:space="preserve">
+    <value>Klasör yolunu girip 'Tara' butonuna tıklayın</value>
+  </data>
+  <data name="Dialog_AddProject_NoResults" xml:space="preserve">
+    <value>Hiçbir çalıştırılabilir proje bulunamadı.</value>
+  </data>
+  <data name="Dialog_AddProject_ResultCount" xml:space="preserve">
+    <value>{0} süreç tespit edildi:</value>
+  </data>
+  <data name="Dialog_AddProject_Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Dialog_AddProject_Add" xml:space="preserve">
+    <value>Projeyi Ekle</value>
+  </data>
+  <data name="Dialog_AddProject_NameRequired" xml:space="preserve">
+    <value>Proje adı gereklidir.</value>
+  </data>
+  <data name="Dialog_AddProject_PathRequired" xml:space="preserve">
+    <value>Lütfen bir klasör yolu girin.</value>
+  </data>
+  <data name="Dialog_AddProject_PathNotFound" xml:space="preserve">
+    <value>Belirtilen klasör bulunamadı.</value>
+  </data>
+
+  <!-- Add Process Dialog -->
+  <data name="Dialog_AddProcess_Title" xml:space="preserve">
+    <value>Yeni Süreç Ekle</value>
+  </data>
+  <data name="Dialog_AddProcess_Header" xml:space="preserve">
+    <value>Yeni Süreç</value>
+  </data>
+  <data name="Dialog_AddProcess_NameHint" xml:space="preserve">
+    <value>Süreç Adı (ör: API Backend)</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandHint" xml:space="preserve">
+    <value>Komut (ör: dotnet, cmd, npm)</value>
+  </data>
+  <data name="Dialog_AddProcess_ArgsHint" xml:space="preserve">
+    <value>Argümanlar (ör: run --project Api.csproj)</value>
+  </data>
+  <data name="Dialog_AddProcess_WorkDirHint" xml:space="preserve">
+    <value>Çalışma Dizini</value>
+  </data>
+  <data name="Dialog_AddProcess_EnvVars" xml:space="preserve">
+    <value>Ortam Değişkenleri (KEY=VALUE, her satıra bir tane)</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoRestart" xml:space="preserve">
+    <value>Crash durumunda otomatik yeniden başlat</value>
+  </data>
+  <data name="Dialog_AddProcess_MaxRetries" xml:space="preserve">
+    <value>Max deneme:</value>
+  </data>
+  <data name="Dialog_AddProcess_Delay" xml:space="preserve">
+    <value>Bekleme (sn):</value>
+  </data>
+  <data name="Dialog_AddProcess_StartupDelay" xml:space="preserve">
+    <value>Başlatma gecikmesi (sn):</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoStartWithProject" xml:space="preserve">
+    <value>Proje başlatıldığında otomatik başlat</value>
+  </data>
+  <data name="Dialog_AddProcess_Cancel" xml:space="preserve">
+    <value>İptal</value>
+  </data>
+  <data name="Dialog_AddProcess_Add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="Dialog_AddProcess_NameRequired" xml:space="preserve">
+    <value>Süreç adı gereklidir.</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandRequired" xml:space="preserve">
+    <value>Komut gereklidir.</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseCommand" xml:space="preserve">
+    <value>Komut Seçin</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseWorkDir" xml:space="preserve">
+    <value>Çalışma Dizini Seçin</value>
+  </data>
+  <data name="Dialog_AddProcess_FileFilter" xml:space="preserve">
+    <value>Çalıştırılabilir dosyalar (*.exe)|*.exe|Tüm dosyalar (*.*)|*.*</value>
+  </data>
+
+  <!-- About Dialog -->
+  <data name="About_Title" xml:space="preserve">
+    <value>Hakkında - DevManager</value>
+  </data>
+  <data name="About_AppName" xml:space="preserve">
+    <value>DevManager</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>Birden fazla geliştirme sürecini tek bir arayüzden yönetin.</value>
+  </data>
+  <data name="About_Company" xml:space="preserve">
+    <value>Istech Yazılım ve Danışmanlık</value>
+  </data>
+  <data name="About_Close" xml:space="preserve">
+    <value>Kapat</value>
+  </data>
+
+  <!-- Colors -->
+  <data name="Color_Blue" xml:space="preserve">
+    <value>Mavi</value>
+  </data>
+  <data name="Color_Red" xml:space="preserve">
+    <value>Kırmızı</value>
+  </data>
+  <data name="Color_Green" xml:space="preserve">
+    <value>Yeşil</value>
+  </data>
+  <data name="Color_Orange" xml:space="preserve">
+    <value>Turuncu</value>
+  </data>
+  <data name="Color_Purple" xml:space="preserve">
+    <value>Mor</value>
+  </data>
+  <data name="Color_Teal" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="Color_Pink" xml:space="preserve">
+    <value>Pembe</value>
+  </data>
+  <data name="Color_Indigo" xml:space="preserve">
+    <value>İndigo</value>
+  </data>
+
+  <!-- Common -->
+  <data name="Warning_Title" xml:space="preserve">
+    <value>Uyarı</value>
+  </data>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Hata</value>
+  </data>
+  <data name="Error_AppError" xml:space="preserve">
+    <value>Hata:
+{0}
+
+{1}</value>
+  </data>
+  <data name="Error_AppErrorTitle" xml:space="preserve">
+    <value>DevManager Hata</value>
+  </data>
+  <data name="Error_LoadFailed" xml:space="preserve">
+    <value>Yükleme hatası: {0}</value>
+  </data>
+  <data name="Log_OrphanAdopted" xml:space="preserve">
+    <value>{0} adet önceki oturumdan kalan process tespit edildi ve sahiplenildi.</value>
+  </data>
+  <data name="Process_Starting" xml:space="preserve">
+    <value>Başlatılıyor: {0} {1}</value>
+  </data>
+  <data name="Process_Started" xml:space="preserve">
+    <value>Process başlatıldı (PID: {0})</value>
+  </data>
+  <data name="Process_Stopping" xml:space="preserve">
+    <value>Process durduruluyor...</value>
+  </data>
+  <data name="Process_Stopped" xml:space="preserve">
+    <value>Process durduruldu</value>
+  </data>
+  <data name="Process_FailedToStart" xml:space="preserve">
+    <value>Başlatılamadı: {0}</value>
+  </data>
+  <data name="Process_ExitedNormally" xml:space="preserve">
+    <value>Process normal şekilde kapandı (code: 0)</value>
+  </data>
+  <data name="Process_ExitedWithCode" xml:space="preserve">
+    <value>Process kapandı (exit code: {0})</value>
+  </data>
+  <data name="Process_AutoRestarting" xml:space="preserve">
+    <value>{0}sn sonra otomatik yeniden başlatılacak (deneme {1}/{2})</value>
+  </data>
+  <data name="Process_MaxRestartsReached" xml:space="preserve">
+    <value>Maksimum yeniden başlatma denemesi ({0}) aşıldı.</value>
+  </data>
+  <data name="Process_OrphanDetected" xml:space="preserve">
+    <value>Önceki oturumdan çalışan process bulundu ve sahiplenildi (PID: {0})</value>
+  </data>
+  <data name="Process_OrphanLogNote" xml:space="preserve">
+    <value>Canlı log bu oturum için kullanılamaz - process yeniden başlatılırsa loglar görünür</value>
+  </data>
+</root>

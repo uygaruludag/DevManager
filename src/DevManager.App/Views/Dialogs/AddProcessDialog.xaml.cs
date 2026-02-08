@@ -1,4 +1,5 @@
 using System.Windows;
+using DevManager.App.Resources.Strings;
 using DevManager.Core.Models;
 using Microsoft.Win32;
 using WinForms = System.Windows.Forms;
@@ -18,13 +19,13 @@ public partial class AddProcessDialog : Window
     {
         if (string.IsNullOrWhiteSpace(TxtName.Text))
         {
-            MessageBox.Show("Süreç adı gereklidir.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Strings.Dialog_AddProcess_NameRequired, Strings.Warning_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
         if (string.IsNullOrWhiteSpace(TxtCommand.Text))
         {
-            MessageBox.Show("Komut gereklidir.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Strings.Dialog_AddProcess_CommandRequired, Strings.Warning_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
@@ -68,8 +69,8 @@ public partial class AddProcessDialog : Window
     {
         var dialog = new OpenFileDialog
         {
-            Filter = "Executable files (*.exe)|*.exe|All files (*.*)|*.*",
-            Title = "Komut Seçin"
+            Filter = Strings.Dialog_AddProcess_FileFilter,
+            Title = Strings.Dialog_AddProcess_BrowseCommand
         };
 
         if (dialog.ShowDialog() == true)
@@ -80,7 +81,7 @@ public partial class AddProcessDialog : Window
     {
         var dialog = new WinForms.FolderBrowserDialog
         {
-            Description = "Çalışma Dizini Seçin",
+            Description = Strings.Dialog_AddProcess_BrowseWorkDir,
             ShowNewFolderButton = false
         };
 

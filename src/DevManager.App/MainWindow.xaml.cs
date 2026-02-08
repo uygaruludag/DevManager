@@ -1,6 +1,7 @@
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
+using DevManager.App.Resources.Strings;
 using DevManager.App.ViewModels;
 using DevManager.Core.Services.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,7 +29,7 @@ public partial class MainWindow : Window
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Load error: {ex.Message}", "Error");
+                MessageBox.Show(string.Format(Strings.Error_LoadFailed, ex.Message), Strings.Error_Title);
             }
         };
 

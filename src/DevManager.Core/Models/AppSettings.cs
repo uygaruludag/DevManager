@@ -9,4 +9,5 @@ public class AppSettings
     public bool ConfirmBeforeStopAll { get; set; } = true;
     public string Theme { get; set; } = "Dark";
     public string AccentColor { get; set; } = "Blue";
+    public string Language { get; set; } = "tr";
 }

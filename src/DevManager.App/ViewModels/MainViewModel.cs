@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using DevManager.App.Resources.Strings;
 using DevManager.Core.Models;
 using DevManager.Core.Services.Interfaces;
 
@@ -60,14 +61,13 @@ public partial class MainViewModel : ObservableObject
             if (Projects.Count > 0)
                 SelectedProject = Projects[0];
 
-            // Önceki oturumdan kalan çalışan processleri tespit et
             var allDefinitions = Projects.SelectMany(p => p.Processes.Select(vm => vm.Definition)).ToList();
             if (allDefinitions.Count > 0)
             {
                 var adopted = await _processManager.DetectAndAdoptOrphansAsync(allDefinitions);
                 if (adopted > 0)
                     _logService.AppendLog(Guid.Empty,
-                        $"{adopted} adet önceki oturumdan kalan process tespit edildi ve sahiplenildi.",
+                        string.Format(Strings.Log_OrphanAdopted, adopted),
                         Core.Models.LogEntryType.System);
             }
         }
@@ -130,8 +130,8 @@ public partial class MainViewModel : ObservableObject
         if (SelectedProject == null) return;
 
         var result = MessageBox.Show(
-            $"'{SelectedProject.Name}' projesini silmek istediğinize emin misiniz?",
-            "Proje Sil",
+            string.Format(Strings.Project_DeleteConfirm, SelectedProject.Name),
+            Strings.Project_DeleteTitle,
             MessageBoxButton.YesNo,
             MessageBoxImage.Question);
 
@@ -159,8 +159,8 @@ public partial class MainViewModel : ObservableObject
         if (SelectedProject == null || processVm == null) return;
 
         var result = MessageBox.Show(
-            $"'{processVm.Name}' sürecini silmek istediğinize emin misiniz?",
-            "Süreç Sil",
+            string.Format(Strings.Process_DeleteConfirm, processVm.Name),
+            Strings.Process_DeleteTitle,
             MessageBoxButton.YesNo,
             MessageBoxImage.Question);
 

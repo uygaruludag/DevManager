@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+
+  <!-- App-level -->
+  <data name="App_Title" xml:space="preserve">
+    <value>DevManager</value>
+  </data>
+  <data name="App_Running" xml:space="preserve">
+    <value>running</value>
+  </data>
+
+  <!-- Top menu -->
+  <data name="Menu_StartAll" xml:space="preserve">
+    <value>Start All</value>
+  </data>
+  <data name="Menu_StopAll" xml:space="preserve">
+    <value>Stop All</value>
+  </data>
+  <data name="Menu_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+
+  <!-- Projects sidebar -->
+  <data name="Projects_Header" xml:space="preserve">
+    <value>PROJECTS</value>
+  </data>
+  <data name="Projects_AddProject" xml:space="preserve">
+    <value>+ Add Project</value>
+  </data>
+  <data name="Projects_SelectPrompt" xml:space="preserve">
+    <value>Select a project or add a new one</value>
+  </data>
+
+  <!-- Project header -->
+  <data name="Project_StartAll" xml:space="preserve">
+    <value>Start all processes</value>
+  </data>
+  <data name="Project_StopAll" xml:space="preserve">
+    <value>Stop all processes</value>
+  </data>
+  <data name="Project_RestartAll" xml:space="preserve">
+    <value>Restart all processes</value>
+  </data>
+  <data name="Project_AddProcess" xml:space="preserve">
+    <value>Add Process</value>
+  </data>
+  <data name="Project_Delete" xml:space="preserve">
+    <value>Delete Project</value>
+  </data>
+  <data name="Project_DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete project '{0}'?</value>
+  </data>
+  <data name="Project_DeleteTitle" xml:space="preserve">
+    <value>Delete Project</value>
+  </data>
+
+  <!-- Process card -->
+  <data name="Process_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Process_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Process_Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="Process_ClearLogs" xml:space="preserve">
+    <value>Clear Logs</value>
+  </data>
+  <data name="Process_CopyLogs" xml:space="preserve">
+    <value>Copy Logs</value>
+  </data>
+  <data name="Process_Delete" xml:space="preserve">
+    <value>Delete Process</value>
+  </data>
+  <data name="Process_DeleteConfirm" xml:space="preserve">
+    <value>Are you sure you want to delete process '{0}'?</value>
+  </data>
+  <data name="Process_DeleteTitle" xml:space="preserve">
+    <value>Delete Process</value>
+  </data>
+  <data name="Process_RestartCount" xml:space="preserve">
+    <value>Restart count:</value>
+  </data>
+
+  <!-- Process states -->
+  <data name="State_Running" xml:space="preserve">
+    <value>Running</value>
+  </data>
+  <data name="State_Stopped" xml:space="preserve">
+    <value>Stopped</value>
+  </data>
+  <data name="State_Starting" xml:space="preserve">
+    <value>Starting...</value>
+  </data>
+  <data name="State_Stopping" xml:space="preserve">
+    <value>Stopping...</value>
+  </data>
+  <data name="State_Crashed" xml:space="preserve">
+    <value>Crashed</value>
+  </data>
+  <data name="State_Restarting" xml:space="preserve">
+    <value>Restarting...</value>
+  </data>
+  <data name="State_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+
+  <!-- Add Project Dialog -->
+  <data name="Dialog_AddProject_Title" xml:space="preserve">
+    <value>Add New Project</value>
+  </data>
+  <data name="Dialog_AddProject_Header" xml:space="preserve">
+    <value>New Project</value>
+  </data>
+  <data name="Dialog_AddProject_PathHint" xml:space="preserve">
+    <value>Project Folder Path (e.g., D:\source\project)</value>
+  </data>
+  <data name="Dialog_AddProject_BrowseFolder" xml:space="preserve">
+    <value>Select Folder</value>
+  </data>
+  <data name="Dialog_AddProject_Scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="Dialog_AddProject_ScanTooltip" xml:space="preserve">
+    <value>Auto-detect projects</value>
+  </data>
+  <data name="Dialog_AddProject_NameHint" xml:space="preserve">
+    <value>Project Name</value>
+  </data>
+  <data name="Dialog_AddProject_Color" xml:space="preserve">
+    <value>Color:</value>
+  </data>
+  <data name="Dialog_AddProject_AutoStart" xml:space="preserve">
+    <value>Auto-start when application launches</value>
+  </data>
+  <data name="Dialog_AddProject_ScanPrompt" xml:space="preserve">
+    <value>Enter a folder path and click 'Scan'</value>
+  </data>
+  <data name="Dialog_AddProject_NoResults" xml:space="preserve">
+    <value>No runnable projects found.</value>
+  </data>
+  <data name="Dialog_AddProject_ResultCount" xml:space="preserve">
+    <value>{0} processes detected:</value>
+  </data>
+  <data name="Dialog_AddProject_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dialog_AddProject_Add" xml:space="preserve">
+    <value>Add Project</value>
+  </data>
+  <data name="Dialog_AddProject_NameRequired" xml:space="preserve">
+    <value>Project name is required.</value>
+  </data>
+  <data name="Dialog_AddProject_PathRequired" xml:space="preserve">
+    <value>Please enter a folder path.</value>
+  </data>
+  <data name="Dialog_AddProject_PathNotFound" xml:space="preserve">
+    <value>The specified folder was not found.</value>
+  </data>
+
+  <!-- Add Process Dialog -->
+  <data name="Dialog_AddProcess_Title" xml:space="preserve">
+    <value>Add New Process</value>
+  </data>
+  <data name="Dialog_AddProcess_Header" xml:space="preserve">
+    <value>New Process</value>
+  </data>
+  <data name="Dialog_AddProcess_NameHint" xml:space="preserve">
+    <value>Process Name (e.g., API Backend)</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandHint" xml:space="preserve">
+    <value>Command (e.g., dotnet, cmd, npm)</value>
+  </data>
+  <data name="Dialog_AddProcess_ArgsHint" xml:space="preserve">
+    <value>Arguments (e.g., run --project Api.csproj)</value>
+  </data>
+  <data name="Dialog_AddProcess_WorkDirHint" xml:space="preserve">
+    <value>Working Directory</value>
+  </data>
+  <data name="Dialog_AddProcess_EnvVars" xml:space="preserve">
+    <value>Environment Variables (KEY=VALUE, one per line)</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoRestart" xml:space="preserve">
+    <value>Auto-restart on crash</value>
+  </data>
+  <data name="Dialog_AddProcess_MaxRetries" xml:space="preserve">
+    <value>Max retries:</value>
+  </data>
+  <data name="Dialog_AddProcess_Delay" xml:space="preserve">
+    <value>Delay (sec):</value>
+  </data>
+  <data name="Dialog_AddProcess_StartupDelay" xml:space="preserve">
+    <value>Startup delay (sec):</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoStartWithProject" xml:space="preserve">
+    <value>Auto-start with project</value>
+  </data>
+  <data name="Dialog_AddProcess_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dialog_AddProcess_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Dialog_AddProcess_NameRequired" xml:space="preserve">
+    <value>Process name is required.</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandRequired" xml:space="preserve">
+    <value>Command is required.</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseCommand" xml:space="preserve">
+    <value>Select Command</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseWorkDir" xml:space="preserve">
+    <value>Select Working Directory</value>
+  </data>
+  <data name="Dialog_AddProcess_FileFilter" xml:space="preserve">
+    <value>Executable files (*.exe)|*.exe|All files (*.*)|*.*</value>
+  </data>
+
+  <!-- About Dialog -->
+  <data name="About_Title" xml:space="preserve">
+    <value>About - DevManager</value>
+  </data>
+  <data name="About_AppName" xml:space="preserve">
+    <value>DevManager</value>
+  </data>
+  <data name="About_Description" xml:space="preserve">
+    <value>Manage multiple development processes from a single interface.</value>
+  </data>
+  <data name="About_Company" xml:space="preserve">
+    <value>Istech Software and Consulting</value>
+  </data>
+  <data name="About_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+
+  <!-- Colors -->
+  <data name="Color_Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Color_Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Color_Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Color_Orange" xml:space="preserve">
+    <value>Orange</value>
+  </data>
+  <data name="Color_Purple" xml:space="preserve">
+    <value>Purple</value>
+  </data>
+  <data name="Color_Teal" xml:space="preserve">
+    <value>Teal</value>
+  </data>
+  <data name="Color_Pink" xml:space="preserve">
+    <value>Pink</value>
+  </data>
+  <data name="Color_Indigo" xml:space="preserve">
+    <value>Indigo</value>
+  </data>
+
+  <!-- Common -->
+  <data name="Warning_Title" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Error_Title" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Error_AppError" xml:space="preserve">
+    <value>Error:
+{0}
+
+{1}</value>
+  </data>
+  <data name="Error_AppErrorTitle" xml:space="preserve">
+    <value>DevManager Error</value>
+  </data>
+  <data name="Error_LoadFailed" xml:space="preserve">
+    <value>Load error: {0}</value>
+  </data>
+  <data name="Log_OrphanAdopted" xml:space="preserve">
+    <value>{0} processes from a previous session were detected and adopted.</value>
+  </data>
+  <data name="Process_Starting" xml:space="preserve">
+    <value>Starting: {0} {1}</value>
+  </data>
+  <data name="Process_Started" xml:space="preserve">
+    <value>Process started (PID: {0})</value>
+  </data>
+  <data name="Process_Stopping" xml:space="preserve">
+    <value>Stopping process...</value>
+  </data>
+  <data name="Process_Stopped" xml:space="preserve">
+    <value>Process stopped</value>
+  </data>
+  <data name="Process_FailedToStart" xml:space="preserve">
+    <value>Failed to start: {0}</value>
+  </data>
+  <data name="Process_ExitedNormally" xml:space="preserve">
+    <value>Process exited normally (code: 0)</value>
+  </data>
+  <data name="Process_ExitedWithCode" xml:space="preserve">
+    <value>Process exited (exit code: {0})</value>
+  </data>
+  <data name="Process_AutoRestarting" xml:space="preserve">
+    <value>Auto-restarting in {0}s (attempt {1}/{2})</value>
+  </data>
+  <data name="Process_MaxRestartsReached" xml:space="preserve">
+    <value>Max restart attempts ({0}) reached. Not restarting.</value>
+  </data>
+  <data name="Process_OrphanDetected" xml:space="preserve">
+    <value>Running process from previous session detected and adopted (PID: {0})</value>
+  </data>
+  <data name="Process_OrphanLogNote" xml:space="preserve">
+    <value>Live logs are not available for this session - logs will appear when process is restarted</value>
+  </data>
+</root>

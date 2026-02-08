@@ -1,4 +1,11 @@
 <p align="center">
+  <a href="README.md">🇹🇷 Türkçe</a> |
+  <a href="README.en.md">🇬🇧 English</a> |
+  <a href="README.de.md">🇩🇪 Deutsch</a> |
+  <a href="README.fr.md">🇫🇷 Français</a>
+</p>
+
+<p align="center">
   <img src="docs/screenshot.png" alt="DevManager Screenshot" width="800"/>
 </p>
 
@@ -207,6 +214,8 @@ Yapılandırma dosyası `%APPDATA%\DevManager\devmanager-config.json` konumunda 
 - [x] Otomatik yeniden başlatma
 - [x] Orphan process algılama
 - [x] Otomatik proje tarama
+- [x] CPU/RAM metrikleri (süreç başına)
+- [x] Çoklu dil desteği (TR/EN/DE/FR)
 - [ ] Sistem tepsisi entegrasyonu
 - [ ] Ayarlar arayüzü
 - [ ] Yapılandırma dışa/içe aktarma

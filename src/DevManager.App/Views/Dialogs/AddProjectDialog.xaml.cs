@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using DevManager.Core.Models;
+using DevManager.App.Resources.Strings;
 using DevManager.Core.Services;
 using WinForms = System.Windows.Forms;
 
@@ -24,13 +25,13 @@ public partial class AddProjectDialog : Window
         var path = TxtPath.Text.Trim();
         if (string.IsNullOrEmpty(path))
         {
-            MessageBox.Show("Lütfen bir klasör yolu girin.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Strings.Dialog_AddProject_PathRequired, Strings.Warning_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
         if (!System.IO.Directory.Exists(path))
         {
-            MessageBox.Show("Belirtilen klasör bulunamadı.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Strings.Dialog_AddProject_PathNotFound, Strings.Warning_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
@@ -40,7 +41,7 @@ public partial class AddProjectDialog : Window
 
         if (definitions.Count == 0)
         {
-            TxtScanStatus.Text = "Hiçbir çalıştırılabilir proje bulunamadı.";
+            TxtScanStatus.Text = Strings.Dialog_AddProject_NoResults;
             return;
         }
 
@@ -50,7 +51,7 @@ public partial class AddProjectDialog : Window
         }
 
         LstProcesses.ItemsSource = ScannedProcesses;
-        TxtScanStatus.Text = $"{definitions.Count} süreç tespit edildi:";
+        TxtScanStatus.Text = string.Format(Strings.Dialog_AddProject_ResultCount, definitions.Count);
 
         // Auto-fill project name from folder name if empty
         if (string.IsNullOrWhiteSpace(TxtName.Text))
@@ -63,7 +64,7 @@ public partial class AddProjectDialog : Window
     {
         if (string.IsNullOrWhiteSpace(TxtName.Text))
         {
-            MessageBox.Show("Proje adı gereklidir.", "Uyarı", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBox.Show(Strings.Dialog_AddProject_NameRequired, Strings.Warning_Title, MessageBoxButton.OK, MessageBoxImage.Warning);
             return;
         }
 
@@ -99,7 +100,7 @@ public partial class AddProjectDialog : Window
     {
         var dialog = new WinForms.FolderBrowserDialog
         {
-            Description = "Proje Klasörü Seçin",
+            Description = Strings.Dialog_AddProject_BrowseFolder,
             ShowNewFolderButton = false
         };
 

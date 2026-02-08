@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Yeni Süreç Ekle"
+        xmlns:strings="clr-namespace:DevManager.App.Resources.Strings"
+        Title="{x:Static strings:Strings.Dialog_AddProcess_Title}"
         Width="550" Height="620"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
@@ -26,12 +27,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="Yeni Süreç"
+            <TextBlock Grid.Row="0" Text="{x:Static strings:Strings.Dialog_AddProcess_Header}"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                        Margin="0,0,0,16"/>
 
             <TextBox Grid.Row="1" x:Name="TxtName"
-                     materialDesign:HintAssist.Hint="Süreç Adı (ör: API Backend)"
+                     materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProcess_NameHint}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      Margin="0,0,0,12"/>
 
@@ -41,7 +42,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="TxtCommand"
-                         materialDesign:HintAssist.Hint="Komut (ör: dotnet, cmd, npm)"
+                         materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProcess_CommandHint}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <Button Grid.Column="1" Content="..." Width="40" Margin="8,0,0,0"
                         Style="{StaticResource MaterialDesignOutlinedButton}"
@@ -49,7 +50,7 @@
             </Grid>
 
             <TextBox Grid.Row="3" x:Name="TxtArguments"
-                     materialDesign:HintAssist.Hint="Argümanlar (ör: run --project Api.csproj)"
+                     materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProcess_ArgsHint}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      Margin="0,0,0,12"/>
 
@@ -59,14 +60,14 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <TextBox x:Name="TxtWorkingDir"
-                         materialDesign:HintAssist.Hint="Çalışma Dizini"
+                         materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProcess_WorkDirHint}"
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                 <Button Grid.Column="1" Content="..." Width="40" Margin="8,0,0,0"
                         Style="{StaticResource MaterialDesignOutlinedButton}"
                         Click="BrowseWorkingDir_Click"/>
             </Grid>
 
-            <TextBlock Grid.Row="5" Text="Ortam Değişkenleri (KEY=VALUE, her satıra bir tane)"
+            <TextBlock Grid.Row="5" Text="{x:Static strings:Strings.Dialog_AddProcess_EnvVars}"
                        Style="{StaticResource MaterialDesignBody2TextBlock}"
                        Margin="0,0,0,4"/>
 
@@ -79,28 +80,28 @@
             <Separator Grid.Row="7" Margin="0,4,0,12"/>
 
             <StackPanel Grid.Row="8" Margin="0,0,0,12">
-                <CheckBox x:Name="ChkAutoRestart" Content="Crash durumunda otomatik yeniden başlat"
+                <CheckBox x:Name="ChkAutoRestart" Content="{x:Static strings:Strings.Dialog_AddProcess_AutoRestart}"
                           IsChecked="True" Margin="0,0,0,8"/>
                 <StackPanel Orientation="Horizontal" Margin="24,0,0,4">
-                    <TextBlock Text="Max deneme:" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="{x:Static strings:Strings.Dialog_AddProcess_MaxRetries}" VerticalAlignment="Center" Margin="0,0,8,0"/>
                     <TextBox x:Name="TxtMaxRetries" Text="3" Width="50"/>
-                    <TextBlock Text="Bekleme (sn):" VerticalAlignment="Center" Margin="16,0,8,0"/>
+                    <TextBlock Text="{x:Static strings:Strings.Dialog_AddProcess_Delay}" VerticalAlignment="Center" Margin="16,0,8,0"/>
                     <TextBox x:Name="TxtRestartDelay" Text="5" Width="50"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="24,4,0,0">
-                    <TextBlock Text="Başlatma gecikmesi (sn):" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                    <TextBlock Text="{x:Static strings:Strings.Dialog_AddProcess_StartupDelay}" VerticalAlignment="Center" Margin="0,0,8,0"/>
                     <TextBox x:Name="TxtStartupDelay" Text="0" Width="50"/>
                 </StackPanel>
             </StackPanel>
 
             <CheckBox Grid.Row="9" x:Name="ChkAutoStartWithProject"
-                      Content="Proje başlatıldığında otomatik başlat"
+                      Content="{x:Static strings:Strings.Dialog_AddProcess_AutoStartWithProject}"
                       IsChecked="True" Margin="0,0,0,16"/>
 
             <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Content="İptal" Style="{StaticResource MaterialDesignOutlinedButton}"
+                <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Cancel}" Style="{StaticResource MaterialDesignOutlinedButton}"
                         Margin="0,0,8,0" Click="Cancel_Click"/>
-                <Button Content="Ekle" Style="{StaticResource MaterialDesignRaisedButton}"
+                <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Add}" Style="{StaticResource MaterialDesignRaisedButton}"
                         Click="Add_Click"/>
             </StackPanel>
         </Grid>

@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Yeni Proje Ekle"
+        xmlns:strings="clr-namespace:DevManager.App.Resources.Strings"
+        Title="{x:Static strings:Strings.Dialog_AddProject_Title}"
         Width="700" Height="600"
         WindowStartupLocation="CenterOwner"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -21,7 +22,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Yeni Proje"
+        <TextBlock Grid.Row="0" Text="{x:Static strings:Strings.Dialog_AddProject_Header}"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Margin="0,0,0,16"/>
 
@@ -33,46 +34,46 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBox x:Name="TxtPath"
-                     materialDesign:HintAssist.Hint="Proje Klasör Yolu (ör: D:\source\siteron)"
+                     materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProject_PathHint}"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
             <Button Grid.Column="1" Content="..." Width="40" Margin="8,0,0,0"
                     Style="{StaticResource MaterialDesignOutlinedButton}"
-                    Click="BrowsePath_Click" ToolTip="Klasör Seç"/>
-            <Button Grid.Column="2" Content="Tara" Margin="8,0,0,0"
+                    Click="BrowsePath_Click" ToolTip="{x:Static strings:Strings.Dialog_AddProject_BrowseFolder}"/>
+            <Button Grid.Column="2" Content="{x:Static strings:Strings.Dialog_AddProject_Scan}" Margin="8,0,0,0"
                     Style="{StaticResource MaterialDesignRaisedButton}"
-                    Click="Scan_Click" ToolTip="Projeleri otomatik tespit et"/>
+                    Click="Scan_Click" ToolTip="{x:Static strings:Strings.Dialog_AddProject_ScanTooltip}"/>
         </Grid>
 
         <!-- Name -->
         <TextBox Grid.Row="2" x:Name="TxtName"
-                 materialDesign:HintAssist.Hint="Proje Adı"
+                 materialDesign:HintAssist.Hint="{x:Static strings:Strings.Dialog_AddProject_NameHint}"
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
                  Margin="0,0,0,12"/>
 
         <!-- Color -->
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,0,0,12">
-            <TextBlock Text="Renk:" VerticalAlignment="Center" Margin="0,0,12,0"/>
+            <TextBlock Text="{x:Static strings:Strings.Dialog_AddProject_Color}" VerticalAlignment="Center" Margin="0,0,12,0"/>
             <ComboBox x:Name="CmbColor" Width="200"
                       Style="{StaticResource MaterialDesignOutlinedComboBox}"
                       SelectedIndex="0">
-                <ComboBoxItem Content="Mavi" Tag="#2196F3"/>
-                <ComboBoxItem Content="Kırmızı" Tag="#F44336"/>
-                <ComboBoxItem Content="Yeşil" Tag="#4CAF50"/>
-                <ComboBoxItem Content="Turuncu" Tag="#FF9800"/>
-                <ComboBoxItem Content="Mor" Tag="#9C27B0"/>
-                <ComboBoxItem Content="Teal" Tag="#009688"/>
-                <ComboBoxItem Content="Pembe" Tag="#E91E63"/>
-                <ComboBoxItem Content="İndigo" Tag="#3F51B5"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Blue}" Tag="#2196F3"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Red}" Tag="#F44336"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Green}" Tag="#4CAF50"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Orange}" Tag="#FF9800"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Purple}" Tag="#9C27B0"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Teal}" Tag="#009688"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Pink}" Tag="#E91E63"/>
+                <ComboBoxItem Content="{x:Static strings:Strings.Color_Indigo}" Tag="#3F51B5"/>
             </ComboBox>
         </StackPanel>
 
         <CheckBox Grid.Row="4" x:Name="ChkAutoStart"
-                  Content="Uygulama açıldığında otomatik başlat"
+                  Content="{x:Static strings:Strings.Dialog_AddProject_AutoStart}"
                   Margin="0,0,0,8"/>
 
         <!-- Scan results header -->
         <TextBlock Grid.Row="5" x:Name="TxtScanStatus"
-                   Text="Klasör yolunu girip 'Tara' butonuna tıklayın"
+                   Text="{x:Static strings:Strings.Dialog_AddProject_ScanPrompt}"
                    FontSize="12" Opacity="0.7" Margin="0,4,0,8"/>
 
         <!-- Detected processes list -->
@@ -113,9 +114,9 @@
 
         <!-- Buttons -->
         <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="İptal" Style="{StaticResource MaterialDesignOutlinedButton}"
+            <Button Content="{x:Static strings:Strings.Dialog_AddProject_Cancel}" Style="{StaticResource MaterialDesignOutlinedButton}"
                     Margin="0,0,8,0" Click="Cancel_Click"/>
-            <Button x:Name="BtnAdd" Content="Projeyi Ekle"
+            <Button x:Name="BtnAdd" Content="{x:Static strings:Strings.Dialog_AddProject_Add}"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     Click="Add_Click"/>
         </StackPanel>

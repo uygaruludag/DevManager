@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="Hakkında - DevManager"
+        xmlns:strings="clr-namespace:DevManager.App.Resources.Strings"
+        Title="{x:Static strings:Strings.About_Title}"
         Width="460" SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
@@ -25,7 +26,7 @@
                                       HorizontalAlignment="Center"
                                       Foreground="{DynamicResource PrimaryHueMidBrush}"
                                       Margin="0,0,0,12"/>
-            <TextBlock Text="DevManager"
+            <TextBlock Text="{x:Static strings:Strings.About_AppName}"
                        FontSize="26" FontWeight="Bold"
                        HorizontalAlignment="Center"/>
             <TextBlock x:Name="TxtVersion"
@@ -37,7 +38,7 @@
 
         <!-- Description -->
         <TextBlock Grid.Row="1"
-                   Text="Birden fazla geliştirme sürecini tek bir arayüzden yönetin."
+                   Text="{x:Static strings:Strings.About_Description}"
                    FontSize="13" Opacity="0.8"
                    TextAlignment="Center" TextWrapping="Wrap"
                    Margin="0,0,0,20"/>
@@ -48,7 +49,7 @@
 
         <!-- Company Info -->
         <StackPanel Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="Istech Yazılım ve Danışmanlık"
+            <TextBlock Text="{x:Static strings:Strings.About_Company}"
                        FontSize="15" FontWeight="SemiBold"
                        HorizontalAlignment="Center"
                        Margin="0,0,0,12"/>
@@ -79,7 +80,7 @@
         </StackPanel>
 
         <!-- Close Button -->
-        <Button Grid.Row="4" Content="Kapat"
+        <Button Grid.Row="4" Content="{x:Static strings:Strings.About_Close}"
                 Style="{StaticResource MaterialDesignRaisedButton}"
                 HorizontalAlignment="Center"
                 Width="120"

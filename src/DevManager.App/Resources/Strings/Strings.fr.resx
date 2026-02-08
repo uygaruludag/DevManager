@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- App-level -->
+  <data name="App_Title">
+    <value>DevManager</value>
+  </data>
+  <data name="App_Running">
+    <value>en cours</value>
+  </data>
+  <!-- Top menu -->
+  <data name="Menu_StartAll">
+    <value>Tout démarrer</value>
+  </data>
+  <data name="Menu_StopAll">
+    <value>Tout arrêter</value>
+  </data>
+  <data name="Menu_About">
+    <value>À propos</value>
+  </data>
+  <!-- Projects sidebar -->
+  <data name="Projects_Header">
+    <value>PROJETS</value>
+  </data>
+  <data name="Projects_AddProject">
+    <value>+ Ajouter un projet</value>
+  </data>
+  <data name="Projects_SelectPrompt">
+    <value>Sélectionnez un projet ou ajoutez-en un nouveau</value>
+  </data>
+  <!-- Project header -->
+  <data name="Project_StartAll">
+    <value>Démarrer tous les processus</value>
+  </data>
+  <data name="Project_StopAll">
+    <value>Arrêter tous les processus</value>
+  </data>
+  <data name="Project_RestartAll">
+    <value>Redémarrer tous les processus</value>
+  </data>
+  <data name="Project_AddProcess">
+    <value>Ajouter un processus</value>
+  </data>
+  <data name="Project_Delete">
+    <value>Supprimer le projet</value>
+  </data>
+  <data name="Project_DeleteConfirm">
+    <value>Êtes-vous sûr de vouloir supprimer le projet '{0}' ?</value>
+  </data>
+  <data name="Project_DeleteTitle">
+    <value>Supprimer le projet</value>
+  </data>
+  <!-- Process card -->
+  <data name="Process_Start">
+    <value>Démarrer</value>
+  </data>
+  <data name="Process_Stop">
+    <value>Arrêter</value>
+  </data>
+  <data name="Process_Restart">
+    <value>Redémarrer</value>
+  </data>
+  <data name="Process_ClearLogs">
+    <value>Effacer les logs</value>
+  </data>
+  <data name="Process_CopyLogs">
+    <value>Copier les logs</value>
+  </data>
+  <data name="Process_Delete">
+    <value>Supprimer le processus</value>
+  </data>
+  <data name="Process_DeleteConfirm">
+    <value>Êtes-vous sûr de vouloir supprimer le processus '{0}' ?</value>
+  </data>
+  <data name="Process_DeleteTitle">
+    <value>Supprimer le processus</value>
+  </data>
+  <data name="Process_RestartCount">
+    <value>Nombre de redémarrages :</value>
+  </data>
+  <!-- Process states -->
+  <data name="State_Running">
+    <value>En cours</value>
+  </data>
+  <data name="State_Stopped">
+    <value>Arrêté</value>
+  </data>
+  <data name="State_Starting">
+    <value>Démarrage...</value>
+  </data>
+  <data name="State_Stopping">
+    <value>Arrêt en cours...</value>
+  </data>
+  <data name="State_Crashed">
+    <value>Planté</value>
+  </data>
+  <data name="State_Restarting">
+    <value>Redémarrage...</value>
+  </data>
+  <data name="State_Unknown">
+    <value>Inconnu</value>
+  </data>
+  <!-- Add Project Dialog -->
+  <data name="Dialog_AddProject_Title">
+    <value>Ajouter un nouveau projet</value>
+  </data>
+  <data name="Dialog_AddProject_Header">
+    <value>Nouveau projet</value>
+  </data>
+  <data name="Dialog_AddProject_PathHint">
+    <value>Chemin du dossier projet (ex: D:\source\project)</value>
+  </data>
+  <data name="Dialog_AddProject_BrowseFolder">
+    <value>Sélectionner un dossier</value>
+  </data>
+  <data name="Dialog_AddProject_Scan">
+    <value>Scanner</value>
+  </data>
+  <data name="Dialog_AddProject_ScanTooltip">
+    <value>Détection automatique des projets</value>
+  </data>
+  <data name="Dialog_AddProject_NameHint">
+    <value>Nom du projet</value>
+  </data>
+  <data name="Dialog_AddProject_Color">
+    <value>Couleur :</value>
+  </data>
+  <data name="Dialog_AddProject_AutoStart">
+    <value>Démarrage automatique au lancement de l'application</value>
+  </data>
+  <data name="Dialog_AddProject_ScanPrompt">
+    <value>Entrez un chemin de dossier et cliquez sur 'Scanner'</value>
+  </data>
+  <data name="Dialog_AddProject_NoResults">
+    <value>Aucun projet exécutable trouvé.</value>
+  </data>
+  <data name="Dialog_AddProject_ResultCount">
+    <value>{0} processus détectés :</value>
+  </data>
+  <data name="Dialog_AddProject_Cancel">
+    <value>Annuler</value>
+  </data>
+  <data name="Dialog_AddProject_Add">
+    <value>Ajouter le projet</value>
+  </data>
+  <data name="Dialog_AddProject_NameRequired">
+    <value>Le nom du projet est requis.</value>
+  </data>
+  <data name="Dialog_AddProject_PathRequired">
+    <value>Veuillez entrer un chemin de dossier.</value>
+  </data>
+  <data name="Dialog_AddProject_PathNotFound">
+    <value>Le dossier spécifié est introuvable.</value>
+  </data>
+  <!-- Add Process Dialog -->
+  <data name="Dialog_AddProcess_Title">
+    <value>Ajouter un nouveau processus</value>
+  </data>
+  <data name="Dialog_AddProcess_Header">
+    <value>Nouveau processus</value>
+  </data>
+  <data name="Dialog_AddProcess_NameHint">
+    <value>Nom du processus (ex: API Backend)</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandHint">
+    <value>Commande (ex: dotnet, cmd, npm)</value>
+  </data>
+  <data name="Dialog_AddProcess_ArgsHint">
+    <value>Arguments (ex: run --project Api.csproj)</value>
+  </data>
+  <data name="Dialog_AddProcess_WorkDirHint">
+    <value>Répertoire de travail</value>
+  </data>
+  <data name="Dialog_AddProcess_EnvVars">
+    <value>Variables d'environnement (KEY=VALUE, une par ligne)</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoRestart">
+    <value>Redémarrage automatique en cas de crash</value>
+  </data>
+  <data name="Dialog_AddProcess_MaxRetries">
+    <value>Essais max :</value>
+  </data>
+  <data name="Dialog_AddProcess_Delay">
+    <value>Délai (sec) :</value>
+  </data>
+  <data name="Dialog_AddProcess_StartupDelay">
+    <value>Délai de démarrage (sec) :</value>
+  </data>
+  <data name="Dialog_AddProcess_AutoStartWithProject">
+    <value>Démarrage automatique avec le projet</value>
+  </data>
+  <data name="Dialog_AddProcess_Cancel">
+    <value>Annuler</value>
+  </data>
+  <data name="Dialog_AddProcess_Add">
+    <value>Ajouter</value>
+  </data>
+  <data name="Dialog_AddProcess_NameRequired">
+    <value>Le nom du processus est requis.</value>
+  </data>
+  <data name="Dialog_AddProcess_CommandRequired">
+    <value>La commande est requise.</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseCommand">
+    <value>Sélectionner une commande</value>
+  </data>
+  <data name="Dialog_AddProcess_BrowseWorkDir">
+    <value>Sélectionner le répertoire de travail</value>
+  </data>
+  <data name="Dialog_AddProcess_FileFilter">
+    <value>Fichiers exécutables (*.exe)|*.exe|Tous les fichiers (*.*)|*.*</value>
+  </data>
+  <!-- About Dialog -->
+  <data name="About_Title">
+    <value>À propos - DevManager</value>
+  </data>
+  <data name="About_AppName">
+    <value>DevManager</value>
+  </data>
+  <data name="About_Description">
+    <value>Gérez plusieurs processus de développement depuis une seule interface.</value>
+  </data>
+  <data name="About_Company">
+    <value>Istech Logiciel et Conseil</value>
+  </data>
+  <data name="About_Close">
+    <value>Fermer</value>
+  </data>
+  <!-- Colors -->
+  <data name="Color_Blue">
+    <value>Bleu</value>
+  </data>
+  <data name="Color_Red">
+    <value>Rouge</value>
+  </data>
+  <data name="Color_Green">
+    <value>Vert</value>
+  </data>
+  <data name="Color_Orange">
+    <value>Orange</value>
+  </data>
+  <data name="Color_Purple">
+    <value>Violet</value>
+  </data>
+  <data name="Color_Teal">
+    <value>Sarcelle</value>
+  </data>
+  <data name="Color_Pink">
+    <value>Rose</value>
+  </data>
+  <data name="Color_Indigo">
+    <value>Indigo</value>
+  </data>
+  <!-- Common -->
+  <data name="Warning_Title">
+    <value>Avertissement</value>
+  </data>
+  <data name="Error_Title">
+    <value>Erreur</value>
+  </data>
+  <data name="Error_AppError">
+    <value>Erreur :
+{0}
+
+{1}</value>
+  </data>
+  <data name="Error_AppErrorTitle">
+    <value>DevManager Erreur</value>
+  </data>
+  <data name="Error_LoadFailed">
+    <value>Erreur de chargement : {0}</value>
+  </data>
+  <data name="Log_OrphanAdopted">
+    <value>{0} processus d'une session précédente ont été détectés et adoptés.</value>
+  </data>
+  <data name="Process_Starting">
+    <value>Démarrage : {0} {1}</value>
+  </data>
+  <data name="Process_Started">
+    <value>Processus démarré (PID : {0})</value>
+  </data>
+  <data name="Process_Stopping">
+    <value>Arrêt du processus...</value>
+  </data>
+  <data name="Process_Stopped">
+    <value>Processus arrêté</value>
+  </data>
+  <data name="Process_FailedToStart">
+    <value>Échec du démarrage : {0}</value>
+  </data>
+  <data name="Process_ExitedNormally">
+    <value>Processus terminé normalement (code : 0)</value>
+  </data>
+  <data name="Process_ExitedWithCode">
+    <value>Processus terminé (code de sortie : {0})</value>
+  </data>
+  <data name="Process_AutoRestarting">
+    <value>Redémarrage automatique dans {0}s (tentative {1}/{2})</value>
+  </data>
+  <data name="Process_MaxRestartsReached">
+    <value>Nombre maximum de tentatives de redémarrage ({0}) atteint.</value>
+  </data>
+  <data name="Process_OrphanDetected">
+    <value>Processus en cours d'une session précédente détecté et adopté (PID : {0})</value>
+  </data>
+  <data name="Process_OrphanLogNote">
+    <value>Les logs en direct ne sont pas disponibles pour cette session - les logs apparaîtront au redémarrage du processus</value>
+  </data>
+</root>
