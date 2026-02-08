@@ -30,6 +30,21 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
         return _processes.TryGetValue(definitionId, out var mp) ? mp.Instance : null;
     }
 
+    public Process? GetSystemProcess(Guid definitionId)
+    {
+        if (!_processes.TryGetValue(definitionId, out var mp))
+            return null;
+
+        try
+        {
+            if (mp.Process != null && !mp.Process.HasExited)
+                return mp.Process;
+        }
+        catch { }
+
+        return null;
+    }
+
     public async Task StartProcessAsync(ProcessDefinition definition)
     {
         if (_processes.TryGetValue(definition.Id, out var existing) &&

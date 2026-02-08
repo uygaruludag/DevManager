@@ -56,6 +56,14 @@
                             Style="{StaticResource MaterialDesignIconForegroundButton}"
                             Foreground="{DynamicResource MaterialDesignPaper}"
                             Margin="4,0"/>
+                    <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}"
+                               Margin="8,4" Background="#55FFFFFF"/>
+                    <Button Content="{materialDesign:PackIcon Kind=InformationOutline}"
+                            ToolTip="Hakkında"
+                            Command="{Binding ShowAboutCommand}"
+                            Style="{StaticResource MaterialDesignIconForegroundButton}"
+                            Foreground="{DynamicResource MaterialDesignPaper}"
+                            Margin="4,0"/>
                 </StackPanel>
             </DockPanel>
         </materialDesign:ColorZone>
@@ -222,6 +230,34 @@
                                                         <TextBlock Text="{Binding Uptime}" FontSize="12"
                                                                    Opacity="0.5" VerticalAlignment="Center"
                                                                    Margin="8,0,0,0"/>
+
+                                                        <!-- Resource Metrics -->
+                                                        <Border CornerRadius="3" Background="#222244"
+                                                                Padding="6,2" Margin="10,0,0,0"
+                                                                VerticalAlignment="Center"
+                                                                Visibility="{Binding CpuUsage, Converter={StaticResource BoolToVisConverter}}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <materialDesign:PackIcon Kind="Chip" Width="13" Height="13"
+                                                                                          VerticalAlignment="Center"
+                                                                                          Foreground="#64B5F6" Margin="0,0,4,0"/>
+                                                                <TextBlock Text="{Binding CpuUsage}" FontSize="11"
+                                                                           Foreground="#64B5F6" VerticalAlignment="Center"
+                                                                           FontFamily="Consolas"/>
+                                                            </StackPanel>
+                                                        </Border>
+                                                        <Border CornerRadius="3" Background="#222244"
+                                                                Padding="6,2" Margin="4,0,0,0"
+                                                                VerticalAlignment="Center"
+                                                                Visibility="{Binding MemoryUsage, Converter={StaticResource BoolToVisConverter}}">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <materialDesign:PackIcon Kind="Memory" Width="13" Height="13"
+                                                                                          VerticalAlignment="Center"
+                                                                                          Foreground="#81C784" Margin="0,0,4,0"/>
+                                                                <TextBlock Text="{Binding MemoryUsage}" FontSize="11"
+                                                                           Foreground="#81C784" VerticalAlignment="Center"
+                                                                           FontFamily="Consolas"/>
+                                                            </StackPanel>
+                                                        </Border>
                                                     </StackPanel>
 
                                                     <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">

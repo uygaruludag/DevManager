@@ -146,6 +146,14 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void ShowAbout()
+    {
+        var dialog = new Views.Dialogs.AboutDialog();
+        dialog.Owner = System.Windows.Application.Current.MainWindow;
+        dialog.ShowDialog();
+    }
+
+    [RelayCommand]
     private void DeleteProcess(ProcessViewModel? processVm)
     {
         if (SelectedProject == null || processVm == null) return;

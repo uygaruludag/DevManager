@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using DevManager.Core.Models;
 
 namespace DevManager.Core.Services.Interfaces;
@@ -16,6 +17,12 @@ public interface IProcessManagerService
     Task StopAllAsync(bool force = false);
 
     ProcessInstance? GetInstance(Guid definitionId);
+
+    /// <summary>
+    /// Yönetilen process'in System.Diagnostics.Process nesnesini döndürür.
+    /// CPU/RAM gibi metrikler okumak için kullanılır.
+    /// </summary>
+    Process? GetSystemProcess(Guid definitionId);
 
     /// <summary>
     /// Önceki oturumdan kalan çalışan processleri tespit edip sahiplenir.

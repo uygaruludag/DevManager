@@ -42,6 +42,18 @@ public partial class ProcessViewModel : ObservableObject
     [ObservableProperty]
     private string _logFilter = string.Empty;
 
+    // Resource metrics
+    [ObservableProperty]
+    private string _cpuUsage = string.Empty;
+
+    [ObservableProperty]
+    private string _memoryUsage = string.Empty;
+
+    // CPU hesaplama için önceki değerler
+    private TimeSpan _lastTotalProcessorTime;
+    private DateTime _lastCpuCheckTime;
+    private bool _hasPreviousCpuReading;
+
     public ObservableCollection<LogEntry> LogEntries { get; } = [];
 
     private DateTime? _startedAt;
@@ -57,7 +69,11 @@ public partial class ProcessViewModel : ObservableObject
         _processManager.ProcessStateChanged += OnProcessStateChanged;
 
         _uptimeTimer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(1) };
-        _uptimeTimer.Tick += (_, _) => UpdateUptime();
+        _uptimeTimer.Tick += (_, _) =>
+        {
+            UpdateUptime();
+            UpdateMetrics();
+        };
 
         // Batch log updates every 100ms instead of per-line
         _logFlushTimer = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(100) };
@@ -148,6 +164,7 @@ public partial class ProcessViewModel : ObservableObject
         if (instance.State == ProcessState.Running && instance.StartedAt.HasValue)
         {
             _startedAt = instance.StartedAt;
+            _hasPreviousCpuReading = false;
             _uptimeTimer.Start();
             UpdateUptime();
         }
@@ -156,6 +173,9 @@ public partial class ProcessViewModel : ObservableObject
             _startedAt = null;
             _uptimeTimer.Stop();
             Uptime = string.Empty;
+            CpuUsage = string.Empty;
+            MemoryUsage = string.Empty;
+            _hasPreviousCpuReading = false;
         }
     }
 
@@ -166,6 +186,57 @@ public partial class ProcessViewModel : ObservableObject
         Uptime = elapsed.TotalHours >= 1
             ? $"{(int)elapsed.TotalHours}h{elapsed.Minutes:D2}m"
             : $"{elapsed.Minutes}m{elapsed.Seconds:D2}s";
+    }
+
+    private void UpdateMetrics()
+    {
+        if (State != ProcessState.Running || ProcessId == null)
+            return;
+
+        try
+        {
+            var process = _processManager.GetSystemProcess(_definition.Id);
+            if (process == null || process.HasExited)
+            {
+                CpuUsage = string.Empty;
+                MemoryUsage = string.Empty;
+                return;
+            }
+
+            // RAM: WorkingSet64 → MB
+            var memoryMb = process.WorkingSet64 / 1024.0 / 1024.0;
+            MemoryUsage = memoryMb >= 1024
+                ? $"{memoryMb / 1024:F1} GB"
+                : $"{memoryMb:F0} MB";
+
+            // CPU: Delta hesaplaması
+            var currentCpuTime = process.TotalProcessorTime;
+            var now = DateTime.UtcNow;
+
+            if (_hasPreviousCpuReading)
+            {
+                var cpuDelta = (currentCpuTime - _lastTotalProcessorTime).TotalMilliseconds;
+                var timeDelta = (now - _lastCpuCheckTime).TotalMilliseconds;
+
+                if (timeDelta > 0)
+                {
+                    var cpuPercent = cpuDelta / timeDelta / Environment.ProcessorCount * 100.0;
+                    cpuPercent = Math.Min(cpuPercent, 100.0); // Clamp
+                    CpuUsage = $"{cpuPercent:F1}%";
+                }
+            }
+
+            _lastTotalProcessorTime = currentCpuTime;
+            _lastCpuCheckTime = now;
+            _hasPreviousCpuReading = true;
+        }
+        catch
+        {
+            // Process erişilemez olabilir (kapanmış, yetki sorunu vb.)
+            CpuUsage = string.Empty;
+            MemoryUsage = string.Empty;
+            _hasPreviousCpuReading = false;
+        }
     }
 
     public void Cleanup()
