@@ -584,8 +584,6 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
 
     #endregion
 
-    #endregion // Process Stop Helpers
-
     public void Dispose()
     {
         foreach (var mp in _processes.Values)
