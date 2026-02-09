@@ -62,15 +62,27 @@
 <a id="kurulum"></a>
 ## Kurulum
 
-### Gereksinimler
+### Hazır İndir (Önerilen)
+
+> **.NET kurulumu gerektirmez** — Self-contained, tek dosya.
+
+| Platform | İndir |
+|----------|-------|
+| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+
+1. ZIP dosyasını indirip istediğiniz klasöre çıkarın
+2. `DevManager.App.exe` dosyasını çalıştırın
+3. Hepsi bu kadar!
+
+### Kaynak Koddan Derleme
+
+#### Gereksinimler
 - Windows 10/11
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-### Derleme ve Çalıştırma
-
 ```bash
 # Repoyu klonlayın
-git clone https://github.com/user/DevManager.git
+git clone https://github.com/uygaruludag/DevManager.git
 cd DevManager
 
 # Derleyin
@@ -80,10 +92,10 @@ dotnet build DevManager.sln
 dotnet run --project src/DevManager.App/DevManager.App.csproj
 ```
 
-### Release Build
+### Self-Contained Publish
 
 ```bash
-dotnet publish src/DevManager.App/DevManager.App.csproj -c Release -o ./publish
+dotnet publish src/DevManager.App/DevManager.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 ```
 
 ---

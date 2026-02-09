@@ -64,15 +64,27 @@
 <a id="installation"></a>
 ## Installation
 
-### Voraussetzungen
+### Herunterladen (Empfohlen)
+
+> **Keine .NET-Installation erforderlich** — Self-contained, einzelne Datei.
+
+| Plattform | Download |
+|-----------|----------|
+| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+
+1. ZIP-Datei herunterladen und in einen beliebigen Ordner entpacken
+2. `DevManager.App.exe` ausführen
+3. Das war's!
+
+### Aus Quellcode kompilieren
+
+#### Voraussetzungen
 - Windows 10/11
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-### Kompilieren und Ausführen
-
 ```bash
 # Repository klonen
-git clone https://github.com/user/DevManager.git
+git clone https://github.com/uygaruludag/DevManager.git
 cd DevManager
 
 # Kompilieren
@@ -82,10 +94,10 @@ dotnet build DevManager.sln
 dotnet run --project src/DevManager.App/DevManager.App.csproj
 ```
 
-### Release Build
+### Self-Contained Publish
 
 ```bash
-dotnet publish src/DevManager.App/DevManager.App.csproj -c Release -o ./publish
+dotnet publish src/DevManager.App/DevManager.App.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ./publish
 ```
 
 ---
