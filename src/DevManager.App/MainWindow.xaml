@@ -8,7 +8,6 @@
         xmlns:strings="clr-namespace:DevManager.App.Localization"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance vm:MainViewModel}"
-        Icon="pack://application:,,,/app.ico"
         Title="DevManager" Height="700" Width="1100"
         MinHeight="500" MinWidth="800"
         WindowStartupLocation="CenterScreen"

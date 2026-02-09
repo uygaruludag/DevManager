@@ -1,6 +1,7 @@
 using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using DevManager.App.Localization;
 using DevManager.App.ViewModels;
 using DevManager.Core.Services.Interfaces;
@@ -13,6 +14,12 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+
+        try
+        {
+            Icon = BitmapFrame.Create(new Uri("pack://application:,,,/app.ico", UriKind.Absolute));
+        }
+        catch { }
 
         var configService = App.Services.GetRequiredService<IConfigurationService>();
         var processManager = App.Services.GetRequiredService<IProcessManagerService>();
