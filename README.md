@@ -74,6 +74,8 @@
 2. `DevManager.App.exe` dosyasını çalıştırın
 3. Hepsi bu kadar!
 
+> ⚠️ **Windows SmartScreen Uyarısı:** İlk çalıştırmada "Windows bilgisayarınızı korudu" uyarısı çıkabilir. Bu, uygulamanın henüz dijital imza (code signing) sertifikasına sahip olmamasından kaynaklanır. **"Daha fazla bilgi" → "Yine de çalıştır"** seçeneğiyle güvenle açabilirsiniz.
+
 ### Kaynak Koddan Derleme
 
 #### Gereksinimler

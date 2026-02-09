@@ -76,6 +76,8 @@
 2. `DevManager.App.exe` ausführen
 3. Das war's!
 
+> ⚠️ **Windows SmartScreen Warnung:** Beim ersten Start kann die Meldung „Der Computer wurde durch Windows geschützt" erscheinen. Dies liegt daran, dass die App noch kein digitales Signaturzertifikat besitzt. Klicken Sie auf **„Weitere Informationen" → „Trotzdem ausführen"**.
+
 ### Aus Quellcode kompilieren
 
 #### Voraussetzungen

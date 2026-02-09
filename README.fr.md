@@ -76,6 +76,8 @@
 2. Exécutez `DevManager.App.exe`
 3. C'est tout !
 
+> ⚠️ **Avertissement Windows SmartScreen :** Au premier lancement, vous pouvez voir un message « Windows a protégé votre ordinateur ». Cela est dû à l'absence de certificat de signature numérique. Cliquez sur **« Informations complémentaires » → « Exécuter quand même »**.
+
 ### Compiler depuis les Sources
 
 #### Prérequis

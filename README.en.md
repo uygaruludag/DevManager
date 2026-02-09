@@ -76,6 +76,8 @@
 2. Run `DevManager.App.exe`
 3. That's it!
 
+> ⚠️ **Windows SmartScreen Warning:** On first launch, you may see a "Windows protected your PC" warning. This is because the app is not yet digitally signed (code signing certificate). Click **"More info" → "Run anyway"** to proceed safely.
+
 ### Build from Source
 
 #### Requirements
