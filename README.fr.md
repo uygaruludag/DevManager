@@ -53,6 +53,13 @@
 - **Statut des Processus** - Affichage instantané du PID, temps de fonctionnement, nombre de redémarrages
 - **Métriques CPU/RAM** - Affichage de l'utilisation CPU et de la consommation mémoire par processus
 
+### Notifications
+- **Détection Erreur/Avertissement** - Détection automatique des patterns error, exception, warning dans les logs des processus
+- **Notification Tray Windows** - Notifications balloon popup depuis la zone de notification
+- **Paramètre par Processus** - Mode de notification par processus : Désactivé, Erreurs uniquement (défaut), Erreurs & Avertissements
+- **Limitation Intelligente** - Réduit progressivement la fréquence des notifications lors d'erreurs continues
+- **Filtre SQL / Faux Positifs** - Les requêtes SQL et expressions comme « 0 errors » sont automatiquement filtrées
+
 ### Interface
 - **Material Design 3** - Design moderne avec thème sombre
 - **Affichage Performant des Logs** - Liste virtualisée, mises à jour groupées (batch 100ms)
@@ -70,10 +77,10 @@
 
 | Plateforme | Télécharger |
 |------------|-------------|
-| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+| Windows x64 | [DevManager-v1.3.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.3.0/DevManager-v1.3.0-win-x64.zip) |
 
 1. Téléchargez le fichier ZIP et extrayez-le dans un dossier
-2. Exécutez `DevManager.App.exe`
+2. Exécutez `DevManager.exe`
 3. C'est tout !
 
 > ⚠️ **Avertissement Windows SmartScreen :** Au premier lancement, vous pouvez voir un message « Windows a protégé votre ordinateur ». Cela est dû à l'absence de certificat de signature numérique. Cliquez sur **« Informations complémentaires » → « Exécuter quand même »**.
@@ -233,7 +240,7 @@ Le fichier de configuration est stocké dans `%APPDATA%\DevManager\devmanager-co
 - [x] Scan automatique de projets
 - [x] Métriques CPU/RAM (par processus)
 - [x] Support multi-langue (TR/EN/DE/FR)
-- [ ] Intégration zone de notification
+- [x] Système de notifications (détection erreurs/avertissements + tray balloon)
 - [ ] Interface des paramètres
 - [ ] Export/Import de configuration
 - [ ] Contrôle d'instance unique

@@ -53,6 +53,13 @@
 - **Prozessstatus** - Sofortige Anzeige von PID, Laufzeit, Neustartanzahl
 - **CPU/RAM-Metriken** - CPU-Auslastung und Speicherverbrauch pro Prozess
 
+### Benachrichtigungen
+- **Fehler/Warnung-Erkennung** - Automatische Erkennung von Error-, Exception- und Warning-Mustern in Prozess-Logs
+- **Windows-Tray-Benachrichtigung** - Balloon-Popup-Benachrichtigungen aus dem Systemtray
+- **Pro-Prozess-Einstellung** - Benachrichtigungsmodus pro Prozess: Aus, Nur Fehler (Standard), Fehler & Warnung
+- **Intelligente Drosselung** - Reduziert progressiv die Benachrichtigungsfrequenz bei fortlaufenden Fehlern
+- **SQL-/Falsch-Positiv-Filter** - SQL-Anweisungen und Ausdrücke wie „0 errors" werden automatisch gefiltert
+
 ### Benutzeroberfläche
 - **Material Design 3** - Modernes, dunkles Thema
 - **Performante Log-Anzeige** - Virtualisierte Liste, gebündelte Aktualisierungen (100ms Batch)
@@ -70,10 +77,10 @@
 
 | Plattform | Download |
 |-----------|----------|
-| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+| Windows x64 | [DevManager-v1.3.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.3.0/DevManager-v1.3.0-win-x64.zip) |
 
 1. ZIP-Datei herunterladen und in einen beliebigen Ordner entpacken
-2. `DevManager.App.exe` ausführen
+2. `DevManager.exe` ausführen
 3. Das war's!
 
 > ⚠️ **Windows SmartScreen Warnung:** Beim ersten Start kann die Meldung „Der Computer wurde durch Windows geschützt" erscheinen. Dies liegt daran, dass die App noch kein digitales Signaturzertifikat besitzt. Klicken Sie auf **„Weitere Informationen" → „Trotzdem ausführen"**.
@@ -233,7 +240,7 @@ Die Konfigurationsdatei wird unter `%APPDATA%\DevManager\devmanager-config.json`
 - [x] Auto-Projektscan
 - [x] CPU/RAM-Metriken (pro Prozess)
 - [x] Mehrsprachige Unterstützung (TR/EN/DE/FR)
-- [ ] Systemtray-Integration
+- [x] Benachrichtigungssystem (Fehler-/Warnung-Erkennung + Tray-Balloon)
 - [ ] Einstellungs-UI
 - [ ] Konfiguration Export/Import
 - [ ] Einzelinstanz-Kontrolle

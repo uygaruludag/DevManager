@@ -53,6 +53,13 @@
 - **Process Status** - Instant display of PID, uptime, restart count
 - **CPU/RAM Metrics** - Per-process CPU usage and memory consumption display
 
+### Notifications
+- **Error/Warning Detection** - Automatic detection of error, exception, warning patterns in process logs
+- **Windows Tray Notification** - Balloon popup notifications from system tray
+- **Per-Process Setting** - Notification mode per process: Off, Error Only (default), Error & Warning
+- **Smart Throttle** - Progressively reduces notification frequency during continuous errors
+- **SQL / False Positive Filter** - SQL statements and expressions like "0 errors" are automatically filtered
+
 ### Interface
 - **Material Design 3** - Modern, dark theme design
 - **Performant Log Display** - Virtualized list, batched updates (100ms batch)
@@ -70,10 +77,10 @@
 
 | Platform | Download |
 |----------|----------|
-| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+| Windows x64 | [DevManager-v1.3.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.3.0/DevManager-v1.3.0-win-x64.zip) |
 
 1. Download the ZIP file and extract it to any folder
-2. Run `DevManager.App.exe`
+2. Run `DevManager.exe`
 3. That's it!
 
 > ⚠️ **Windows SmartScreen Warning:** On first launch, you may see a "Windows protected your PC" warning. This is because the app is not yet digitally signed (code signing certificate). Click **"More info" → "Run anyway"** to proceed safely.
@@ -233,7 +240,7 @@ The configuration file is stored at `%APPDATA%\DevManager\devmanager-config.json
 - [x] Auto project scanning
 - [x] CPU/RAM metrics (per-process)
 - [x] Multi-language support (TR/EN/DE/FR)
-- [ ] System tray integration
+- [x] Notification system (error/warning detection + tray balloon)
 - [ ] Settings UI
 - [ ] Config export/import
 - [ ] Single-instance control

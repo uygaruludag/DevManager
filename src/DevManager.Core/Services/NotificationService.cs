@@ -37,6 +37,11 @@ public class NotificationService : INotificationService
         @"(error\s*count\s*:\s*0|0\s+error|errors?\s*:\s*0|no\s+errors?|warn(ing)?s?\s*:\s*0|0\s+warn|successfully|succeeded)",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    // SQL cümleleri — kolon/tablo adlarında error/warning geçebilir
+    private static readonly Regex SqlPattern = new(
+        @"\b(SELECT|INSERT\s+INTO|UPDATE\s+\w+\s+SET|DELETE\s+FROM|CREATE\s+TABLE|ALTER\s+TABLE|DROP\s+TABLE|INNER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|OUTER\s+JOIN|GROUP\s+BY|ORDER\s+BY|HAVING|UNION)\b",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     public event EventHandler<ProcessNotification>? NotificationReceived;
 
     public NotificationService(
@@ -73,6 +78,10 @@ public class NotificationService : INotificationService
 
         // False positive kontrolü
         if (FalsePositivePattern.IsMatch(text))
+            return;
+
+        // SQL cümlelerini atla (SELECT u.LastError, Error kolon adları vb.)
+        if (SqlPattern.IsMatch(text))
             return;
 
         NotificationLevel? level = null;

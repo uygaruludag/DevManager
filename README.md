@@ -52,6 +52,13 @@
 - **Sağlık Kontrolleri** - HTTP endpoint veya TCP port üzerinden periyodik sağlık kontrolü
 - **Süreç Durumu** - PID, uptime, restart sayısı gibi bilgileri anlık görüntüleme
 
+### Bildirimler
+- **Hata/Uyarı Algılama** - Process loglarında error, exception, warning pattern'leri otomatik algılama
+- **Windows Tray Bildirimi** - Sistem tepsisinden balloon popup ile bildirim
+- **Process Bazında Ayar** - Her process için bildirim modu: Kapalı, Sadece Hata (varsayılan), Hata ve Uyarı
+- **Akıllı Throttle** - Sürekli hata akışında bildirim sıklığını kademeli olarak azaltma
+- **SQL / False Positive Filtresi** - SQL cümleleri ve "0 error" gibi ifadeler otomatik filtrelenir
+
 ### Arayüz
 - **Material Design 3** - Modern, koyu tema tasarım
 - **Performanslı Log Görüntüleme** - Sanallaştırılmış liste, toplu güncelleme (100ms batch)
@@ -68,10 +75,10 @@
 
 | Platform | İndir |
 |----------|-------|
-| Windows x64 | [DevManager-v1.2.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.2.0/DevManager-v1.2.0-win-x64.zip) |
+| Windows x64 | [DevManager-v1.3.0-win-x64.zip](https://github.com/uygaruludag/DevManager/releases/download/v1.3.0/DevManager-v1.3.0-win-x64.zip) |
 
 1. ZIP dosyasını indirip istediğiniz klasöre çıkarın
-2. `DevManager.App.exe` dosyasını çalıştırın
+2. `DevManager.exe` dosyasını çalıştırın
 3. Hepsi bu kadar!
 
 > ⚠️ **Windows SmartScreen Uyarısı:** İlk çalıştırmada "Windows bilgisayarınızı korudu" uyarısı çıkabilir. Bu, uygulamanın henüz dijital imza (code signing) sertifikasına sahip olmamasından kaynaklanır. **"Daha fazla bilgi" → "Yine de çalıştır"** seçeneğiyle güvenle açabilirsiniz.
@@ -230,7 +237,7 @@ Yapılandırma dosyası `%APPDATA%\DevManager\devmanager-config.json` konumunda 
 - [x] Otomatik proje tarama
 - [x] CPU/RAM metrikleri (süreç başına)
 - [x] Çoklu dil desteği (TR/EN/DE/FR)
-- [ ] Sistem tepsisi entegrasyonu
+- [x] Bildirim sistemi (error/warning algılama + tray balloon)
 - [ ] Ayarlar arayüzü
 - [ ] Yapılandırma dışa/içe aktarma
 - [ ] Tek örnek (single-instance) kontrolü
