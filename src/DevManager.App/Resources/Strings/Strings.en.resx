@@ -350,4 +350,27 @@
   <data name="Language_RestartTitle" xml:space="preserve">
     <value>Language Change</value>
   </data>
+
+  <!-- Notifications -->
+  <data name="Notification_ErrorDetected" xml:space="preserve">
+    <value>Error detected in "{0}" process</value>
+  </data>
+  <data name="Notification_WarningDetected" xml:space="preserve">
+    <value>Warning detected in "{0}" process</value>
+  </data>
+  <data name="Notification_ProcessCrashed" xml:space="preserve">
+    <value>"{0}" process crashed (exit code: {1})</value>
+  </data>
+  <data name="Dialog_AddProcess_NotificationMode" xml:space="preserve">
+    <value>Notifications:</value>
+  </data>
+  <data name="NotificationMode_Off" xml:space="preserve">
+    <value>Off</value>
+  </data>
+  <data name="NotificationMode_ErrorOnly" xml:space="preserve">
+    <value>Errors Only</value>
+  </data>
+  <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
+    <value>Errors + Warnings</value>
+  </data>
 </root>

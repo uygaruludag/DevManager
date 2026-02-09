@@ -339,4 +339,27 @@
   <data name="Language_RestartTitle">
     <value>Changement de Langue</value>
   </data>
+
+  <!-- Notifications -->
+  <data name="Notification_ErrorDetected">
+    <value>Erreur détectée dans le processus "{0}"</value>
+  </data>
+  <data name="Notification_WarningDetected">
+    <value>Avertissement détecté dans le processus "{0}"</value>
+  </data>
+  <data name="Notification_ProcessCrashed">
+    <value>Le processus "{0}" a planté (code de sortie : {1})</value>
+  </data>
+  <data name="Dialog_AddProcess_NotificationMode">
+    <value>Notifications :</value>
+  </data>
+  <data name="NotificationMode_Off">
+    <value>Désactivé</value>
+  </data>
+  <data name="NotificationMode_ErrorOnly">
+    <value>Erreurs uniquement</value>
+  </data>
+  <data name="NotificationMode_ErrorAndWarning">
+    <value>Erreurs + Avertissements</value>
+  </data>
 </root>

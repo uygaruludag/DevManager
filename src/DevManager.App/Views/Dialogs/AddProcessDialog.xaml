@@ -4,7 +4,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:strings="clr-namespace:DevManager.App.Localization"
         Title="{x:Static strings:Strings.Dialog_AddProcess_Title}"
-        Width="550" Height="620"
+        Width="550" Height="660"
         WindowStartupLocation="CenterOwner"
         ResizeMode="NoResize"
         Background="{DynamicResource MaterialDesignPaper}"
@@ -14,6 +14,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid Margin="24">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -96,9 +97,20 @@
 
             <CheckBox Grid.Row="9" x:Name="ChkAutoStartWithProject"
                       Content="{x:Static strings:Strings.Dialog_AddProcess_AutoStartWithProject}"
-                      IsChecked="True" Margin="0,0,0,16"/>
+                      IsChecked="True" Margin="0,0,0,12"/>
 
-            <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <!-- Notification Mode -->
+            <StackPanel Grid.Row="10" Orientation="Horizontal" Margin="0,0,0,16">
+                <TextBlock Text="{x:Static strings:Strings.Dialog_AddProcess_NotificationMode}"
+                           VerticalAlignment="Center" Margin="0,0,12,0"/>
+                <ComboBox x:Name="CmbNotificationMode" SelectedIndex="1" Width="180">
+                    <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_Off}" Tag="Off"/>
+                    <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_ErrorOnly}" Tag="ErrorOnly"/>
+                    <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_ErrorAndWarning}" Tag="ErrorAndWarning"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Cancel}" Style="{StaticResource MaterialDesignOutlinedButton}"
                         Margin="0,0,8,0" Click="Cancel_Click"/>
                 <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Add}" Style="{StaticResource MaterialDesignRaisedButton}"

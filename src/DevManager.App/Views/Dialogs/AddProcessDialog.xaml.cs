@@ -1,4 +1,5 @@
 using System.Windows;
+using System.Windows.Controls;
 using DevManager.App.Localization;
 using DevManager.Core.Models;
 using Microsoft.Win32;
@@ -39,7 +40,8 @@ public partial class AddProcessDialog : Window
             MaxRestartAttempts = int.TryParse(TxtMaxRetries.Text, out var mr) ? mr : 3,
             RestartDelaySeconds = int.TryParse(TxtRestartDelay.Text, out var rd) ? rd : 5,
             StartupDelaySeconds = int.TryParse(TxtStartupDelay.Text, out var sd) ? sd : 0,
-            AutoStartWithProject = ChkAutoStartWithProject.IsChecked == true
+            AutoStartWithProject = ChkAutoStartWithProject.IsChecked == true,
+            NotificationMode = ParseNotificationMode()
         };
 
         // Parse environment variables
@@ -75,6 +77,17 @@ public partial class AddProcessDialog : Window
 
         if (dialog.ShowDialog() == true)
             TxtCommand.Text = dialog.FileName;
+    }
+
+    private NotificationMode ParseNotificationMode()
+    {
+        var tag = (CmbNotificationMode.SelectedItem as ComboBoxItem)?.Tag?.ToString();
+        return tag switch
+        {
+            "Off" => NotificationMode.Off,
+            "ErrorAndWarning" => NotificationMode.ErrorAndWarning,
+            _ => NotificationMode.ErrorOnly
+        };
     }
 
     private void BrowseWorkingDir_Click(object sender, RoutedEventArgs e)

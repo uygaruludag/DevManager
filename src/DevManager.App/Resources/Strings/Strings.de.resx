@@ -339,4 +339,27 @@
   <data name="Language_RestartTitle">
     <value>Sprachänderung</value>
   </data>
+
+  <!-- Notifications -->
+  <data name="Notification_ErrorDetected">
+    <value>Fehler im Prozess "{0}" erkannt</value>
+  </data>
+  <data name="Notification_WarningDetected">
+    <value>Warnung im Prozess "{0}" erkannt</value>
+  </data>
+  <data name="Notification_ProcessCrashed">
+    <value>Prozess "{0}" abgestürzt (Exit-Code: {1})</value>
+  </data>
+  <data name="Dialog_AddProcess_NotificationMode">
+    <value>Benachrichtigungen:</value>
+  </data>
+  <data name="NotificationMode_Off">
+    <value>Aus</value>
+  </data>
+  <data name="NotificationMode_ErrorOnly">
+    <value>Nur Fehler</value>
+  </data>
+  <data name="NotificationMode_ErrorAndWarning">
+    <value>Fehler + Warnungen</value>
+  </data>
 </root>

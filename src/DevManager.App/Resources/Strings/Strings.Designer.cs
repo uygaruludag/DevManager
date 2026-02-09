@@ -944,5 +944,47 @@ namespace DevManager.App.Localization {
                 return ResourceManager.GetString("Language_RestartTitle", resourceCulture);
             }
         }
+
+        public static string Notification_ErrorDetected {
+            get {
+                return ResourceManager.GetString("Notification_ErrorDetected", resourceCulture);
+            }
+        }
+
+        public static string Notification_WarningDetected {
+            get {
+                return ResourceManager.GetString("Notification_WarningDetected", resourceCulture);
+            }
+        }
+
+        public static string Notification_ProcessCrashed {
+            get {
+                return ResourceManager.GetString("Notification_ProcessCrashed", resourceCulture);
+            }
+        }
+
+        public static string Dialog_AddProcess_NotificationMode {
+            get {
+                return ResourceManager.GetString("Dialog_AddProcess_NotificationMode", resourceCulture);
+            }
+        }
+
+        public static string NotificationMode_Off {
+            get {
+                return ResourceManager.GetString("NotificationMode_Off", resourceCulture);
+            }
+        }
+
+        public static string NotificationMode_ErrorOnly {
+            get {
+                return ResourceManager.GetString("NotificationMode_ErrorOnly", resourceCulture);
+            }
+        }
+
+        public static string NotificationMode_ErrorAndWarning {
+            get {
+                return ResourceManager.GetString("NotificationMode_ErrorAndWarning", resourceCulture);
+            }
+        }
     }
 }

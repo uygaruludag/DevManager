@@ -29,6 +29,7 @@ public partial class App : Application
         sc.AddSingleton<IProcessManagerService, ProcessManagerService>();
         sc.AddSingleton<ILogService>(new LogService(5000));
         sc.AddSingleton<IHealthCheckService, HealthCheckService>();
+        sc.AddSingleton<INotificationService, NotificationService>();
 
         Services = sc.BuildServiceProvider();
 

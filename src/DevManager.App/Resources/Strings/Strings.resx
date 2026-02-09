@@ -350,4 +350,27 @@
   <data name="Language_RestartTitle" xml:space="preserve">
     <value>Dil Değişikliği</value>
   </data>
+
+  <!-- Notifications -->
+  <data name="Notification_ErrorDetected" xml:space="preserve">
+    <value>"{0}" sürecinde hata algılandı</value>
+  </data>
+  <data name="Notification_WarningDetected" xml:space="preserve">
+    <value>"{0}" sürecinde uyarı algılandı</value>
+  </data>
+  <data name="Notification_ProcessCrashed" xml:space="preserve">
+    <value>"{0}" süreci çöktü (exit code: {1})</value>
+  </data>
+  <data name="Dialog_AddProcess_NotificationMode" xml:space="preserve">
+    <value>Bildirim:</value>
+  </data>
+  <data name="NotificationMode_Off" xml:space="preserve">
+    <value>Kapalı</value>
+  </data>
+  <data name="NotificationMode_ErrorOnly" xml:space="preserve">
+    <value>Sadece Hatalar</value>
+  </data>
+  <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
+    <value>Hata + Uyarı</value>
+  </data>
 </root>

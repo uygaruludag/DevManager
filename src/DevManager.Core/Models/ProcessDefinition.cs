@@ -23,4 +23,14 @@ public class ProcessDefinition
     // Startup
     public int StartupDelaySeconds { get; set; }
     public bool AutoStartWithProject { get; set; } = true;
+
+    // Notifications — Off, ErrorOnly (default), ErrorAndWarning
+    public NotificationMode NotificationMode { get; set; } = NotificationMode.ErrorOnly;
+}
+
+public enum NotificationMode
+{
+    Off,
+    ErrorOnly,
+    ErrorAndWarning
 }
