@@ -31,6 +31,9 @@ public partial class MainWindow : Window
         var processManager = App.Services.GetRequiredService<IProcessManagerService>();
         var logService = App.Services.GetRequiredService<ILogService>();
 
+        // Port çakışması tespit edildiğinde kullanıcıya sor
+        processManager.PortConflictDetected += OnPortConflictDetected;
+
         var vm = new MainViewModel(configService, processManager, logService);
         DataContext = vm;
 
@@ -134,6 +137,22 @@ public partial class MainWindow : Window
 
             _notifyIcon.ShowBalloonTip(3000, title, message, tipIcon);
         });
+    }
+
+    private void OnPortConflictDetected(object? sender, DevManager.Core.Models.PortConflictEventArgs e)
+    {
+        // Bu event UI thread'den çağrılmayabilir, Dispatcher ile senkron çalıştır
+        var result = Dispatcher.Invoke(() =>
+        {
+            var processName = e.ConflictingProcessName ?? "?";
+            var message = string.Format(Strings.PortConflict_Message,
+                e.ProcessName, e.Port, processName, e.ConflictingPid);
+
+            return MessageBox.Show(this, message, Strings.PortConflict_Title,
+                MessageBoxButton.YesNo, MessageBoxImage.Warning);
+        });
+
+        e.KillRequested = result == MessageBoxResult.Yes;
     }
 
     private bool _languageInitialized;

@@ -72,6 +72,9 @@
   <data name="Project_AddProcess" xml:space="preserve">
     <value>Süreç Ekle</value>
   </data>
+  <data name="Project_Edit" xml:space="preserve">
+    <value>Projeyi Düzenle</value>
+  </data>
   <data name="Project_Delete" xml:space="preserve">
     <value>Projeyi Sil</value>
   </data>
@@ -97,6 +100,9 @@
   </data>
   <data name="Process_CopyLogs" xml:space="preserve">
     <value>Logları Kopyala</value>
+  </data>
+  <data name="Process_Edit" xml:space="preserve">
+    <value>Süreci Düzenle</value>
   </data>
   <data name="Process_Delete" xml:space="preserve">
     <value>Süreci Sil</value>
@@ -289,6 +295,23 @@
     <value>İndigo</value>
   </data>
 
+  <!-- Edit Dialogs -->
+  <data name="Dialog_EditProject_Title" xml:space="preserve">
+    <value>Projeyi Düzenle</value>
+  </data>
+  <data name="Dialog_EditProject_Header" xml:space="preserve">
+    <value>Proje Düzenle</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Kaydet</value>
+  </data>
+  <data name="Dialog_EditProcess_Title" xml:space="preserve">
+    <value>Süreci Düzenle</value>
+  </data>
+  <data name="Dialog_EditProcess_Header" xml:space="preserve">
+    <value>Süreç Düzenle</value>
+  </data>
+
   <!-- Common -->
   <data name="Warning_Title" xml:space="preserve">
     <value>Uyarı</value>
@@ -372,5 +395,17 @@
   </data>
   <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
     <value>Hata + Uyarı</value>
+  </data>
+
+  <!-- Port Conflict -->
+  <data name="PortConflict_Title" xml:space="preserve">
+    <value>Port Çakışması</value>
+  </data>
+  <data name="PortConflict_Message" xml:space="preserve">
+    <value>"{0}" başlatılmak isteniyor ancak port {1} zaten kullanımda.
+
+Çakışan process: {2} (PID: {3})
+
+Bu process durdurulup devam edilsin mi?</value>
   </data>
 </root>

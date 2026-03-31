@@ -68,6 +68,9 @@
   <data name="Project_AddProcess">
     <value>Ajouter un processus</value>
   </data>
+  <data name="Project_Edit">
+    <value>Modifier le projet</value>
+  </data>
   <data name="Project_Delete">
     <value>Supprimer le projet</value>
   </data>
@@ -92,6 +95,9 @@
   </data>
   <data name="Process_CopyLogs">
     <value>Copier les logs</value>
+  </data>
+  <data name="Process_Edit">
+    <value>Modifier le processus</value>
   </data>
   <data name="Process_Delete">
     <value>Supprimer le processus</value>
@@ -278,6 +284,23 @@
   <data name="Color_Indigo">
     <value>Indigo</value>
   </data>
+  <!-- Edit Dialogs -->
+  <data name="Dialog_EditProject_Title">
+    <value>Modifier le projet</value>
+  </data>
+  <data name="Dialog_EditProject_Header">
+    <value>Modifier le projet</value>
+  </data>
+  <data name="Dialog_Save">
+    <value>Enregistrer</value>
+  </data>
+  <data name="Dialog_EditProcess_Title">
+    <value>Modifier le processus</value>
+  </data>
+  <data name="Dialog_EditProcess_Header">
+    <value>Modifier le processus</value>
+  </data>
+
   <!-- Common -->
   <data name="Warning_Title">
     <value>Avertissement</value>
@@ -361,5 +384,17 @@
   </data>
   <data name="NotificationMode_ErrorAndWarning">
     <value>Erreurs + Avertissements</value>
+  </data>
+
+  <!-- Port Conflict -->
+  <data name="PortConflict_Title">
+    <value>Conflit de port</value>
+  </data>
+  <data name="PortConflict_Message">
+    <value>"{0}" est sur le point de démarrer mais le port {1} est déjà utilisé.
+
+Processus en conflit : {2} (PID : {3})
+
+Voulez-vous arrêter ce processus et continuer ?</value>
   </data>
 </root>

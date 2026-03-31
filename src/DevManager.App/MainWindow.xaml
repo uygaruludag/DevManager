@@ -191,6 +191,12 @@
                                         Margin="2,0">
                                     <materialDesign:PackIcon Kind="Plus" Width="24" Height="24"/>
                                 </Button>
+                                <Button ToolTip="{x:Static strings:Strings.Project_Edit}"
+                                        Command="{Binding EditProjectCommand}"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        Margin="2,0">
+                                    <materialDesign:PackIcon Kind="PencilOutline" Width="24" Height="24"/>
+                                </Button>
                                 <Button ToolTip="{x:Static strings:Strings.Project_Delete}"
                                         Command="{Binding DeleteProjectCommand}"
                                         Style="{StaticResource MaterialDesignIconButton}"
@@ -304,6 +310,13 @@
                                                                 Style="{StaticResource MaterialDesignIconButton}"
                                                                 Width="32" Height="32">
                                                             <materialDesign:PackIcon Kind="ContentCopy" Width="18" Height="18"/>
+                                                        </Button>
+                                                        <Button ToolTip="{x:Static strings:Strings.Process_Edit}"
+                                                                Command="{Binding DataContext.EditProcessCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                                CommandParameter="{Binding}"
+                                                                Style="{StaticResource MaterialDesignIconButton}"
+                                                                Width="32" Height="32">
+                                                            <materialDesign:PackIcon Kind="Pencil" Width="18" Height="18"/>
                                                         </Button>
                                                         <Button ToolTip="{x:Static strings:Strings.Process_Delete}"
                                                                 Command="{Binding DataContext.DeleteProcessCommand, RelativeSource={RelativeSource AncestorType=Window}}"

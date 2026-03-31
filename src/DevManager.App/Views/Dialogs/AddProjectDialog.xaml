@@ -22,7 +22,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{x:Static strings:Strings.Dialog_AddProject_Header}"
+        <TextBlock Grid.Row="0" x:Name="TxtHeader"
+                   Text="{x:Static strings:Strings.Dialog_AddProject_Header}"
                    Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                    Margin="0,0,0,16"/>
 

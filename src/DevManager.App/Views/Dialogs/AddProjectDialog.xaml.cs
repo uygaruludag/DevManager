@@ -12,12 +12,37 @@ namespace DevManager.App.Views.Dialogs;
 public partial class AddProjectDialog : Window
 {
     public Project? Result { get; private set; }
+    private readonly Project? _editingProject;
+    private bool IsEditMode => _editingProject != null;
 
     public ObservableCollection<ScannedProcess> ScannedProcesses { get; } = [];
 
-    public AddProjectDialog()
+    public AddProjectDialog(Project? existingProject = null)
     {
         InitializeComponent();
+
+        if (existingProject != null)
+        {
+            _editingProject = existingProject;
+            Title = Strings.Dialog_EditProject_Title;
+            TxtHeader.Text = Strings.Dialog_EditProject_Header;
+            BtnAdd.Content = Strings.Dialog_Save;
+
+            // Mevcut değerleri doldur
+            TxtName.Text = existingProject.Name;
+            ChkAutoStart.IsChecked = existingProject.AutoStartOnLaunch;
+
+            // Renk seç
+            for (int i = 0; i < CmbColor.Items.Count; i++)
+            {
+                if (CmbColor.Items[i] is ComboBoxItem item &&
+                    item.Tag?.ToString() == existingProject.Color)
+                {
+                    CmbColor.SelectedIndex = i;
+                    break;
+                }
+            }
+        }
     }
 
     private void Scan_Click(object sender, RoutedEventArgs e)
@@ -70,22 +95,43 @@ public partial class AddProjectDialog : Window
 
         var selectedColor = (CmbColor.SelectedItem as ComboBoxItem)?.Tag?.ToString() ?? "#2196F3";
 
-        var project = new Project
+        if (IsEditMode)
         {
-            Name = TxtName.Text.Trim(),
-            Color = selectedColor,
-            AutoStartOnLaunch = ChkAutoStart.IsChecked == true
-        };
+            // Edit modu: mevcut projeyi güncelle
+            _editingProject!.Name = TxtName.Text.Trim();
+            _editingProject.Color = selectedColor;
+            _editingProject.AutoStartOnLaunch = ChkAutoStart.IsChecked == true;
 
-        // Add selected scanned processes
-        var selectedProcesses = ScannedProcesses.Where(sp => sp.IsSelected).ToList();
-        foreach (var sp in selectedProcesses)
+            // Yeni taranan processler varsa ekle
+            var selectedProcesses = ScannedProcesses.Where(sp => sp.IsSelected).ToList();
+            foreach (var sp in selectedProcesses)
+            {
+                sp.Definition.ProjectId = _editingProject.Id;
+                _editingProject.Processes.Add(sp.Definition);
+            }
+
+            Result = _editingProject;
+        }
+        else
         {
-            sp.Definition.ProjectId = project.Id;
-            project.Processes.Add(sp.Definition);
+            var project = new Project
+            {
+                Name = TxtName.Text.Trim(),
+                Color = selectedColor,
+                AutoStartOnLaunch = ChkAutoStart.IsChecked == true
+            };
+
+            // Add selected scanned processes
+            var selectedProcesses = ScannedProcesses.Where(sp => sp.IsSelected).ToList();
+            foreach (var sp in selectedProcesses)
+            {
+                sp.Definition.ProjectId = project.Id;
+                project.Processes.Add(sp.Definition);
+            }
+
+            Result = project;
         }
 
-        Result = project;
         DialogResult = true;
         Close();
     }

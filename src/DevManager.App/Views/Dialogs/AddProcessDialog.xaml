@@ -28,7 +28,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" Text="{x:Static strings:Strings.Dialog_AddProcess_Header}"
+            <TextBlock Grid.Row="0" x:Name="TxtHeader"
+                       Text="{x:Static strings:Strings.Dialog_AddProcess_Header}"
                        Style="{StaticResource MaterialDesignHeadline6TextBlock}"
                        Margin="0,0,0,16"/>
 
@@ -113,7 +114,8 @@
             <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Cancel}" Style="{StaticResource MaterialDesignOutlinedButton}"
                         Margin="0,0,8,0" Click="Cancel_Click"/>
-                <Button Content="{x:Static strings:Strings.Dialog_AddProcess_Add}" Style="{StaticResource MaterialDesignRaisedButton}"
+                <Button x:Name="BtnAdd" Content="{x:Static strings:Strings.Dialog_AddProcess_Add}"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
                         Click="Add_Click"/>
             </StackPanel>
         </Grid>

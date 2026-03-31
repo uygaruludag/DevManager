@@ -10,10 +10,47 @@ namespace DevManager.App.Views.Dialogs;
 public partial class AddProcessDialog : Window
 {
     public ProcessDefinition? Result { get; private set; }
+    private readonly ProcessDefinition? _editingProcess;
+    private bool IsEditMode => _editingProcess != null;
 
-    public AddProcessDialog()
+    public AddProcessDialog(ProcessDefinition? existingProcess = null)
     {
         InitializeComponent();
+
+        if (existingProcess != null)
+        {
+            _editingProcess = existingProcess;
+            Title = Strings.Dialog_EditProcess_Title;
+            TxtHeader.Text = Strings.Dialog_EditProcess_Header;
+            BtnAdd.Content = Strings.Dialog_Save;
+
+            // Mevcut değerleri doldur
+            TxtName.Text = existingProcess.Name;
+            TxtCommand.Text = existingProcess.Command;
+            TxtArguments.Text = existingProcess.Arguments;
+            TxtWorkingDir.Text = existingProcess.WorkingDirectory;
+            ChkAutoRestart.IsChecked = existingProcess.AutoRestartOnCrash;
+            TxtMaxRetries.Text = existingProcess.MaxRestartAttempts.ToString();
+            TxtRestartDelay.Text = existingProcess.RestartDelaySeconds.ToString();
+            TxtStartupDelay.Text = existingProcess.StartupDelaySeconds.ToString();
+            ChkAutoStartWithProject.IsChecked = existingProcess.AutoStartWithProject;
+
+            // Environment variables
+            if (existingProcess.EnvironmentVariables.Count > 0)
+            {
+                TxtEnvVars.Text = string.Join("\n",
+                    existingProcess.EnvironmentVariables.Select(kv => $"{kv.Key}={kv.Value}"));
+            }
+
+            // Notification mode
+            CmbNotificationMode.SelectedIndex = existingProcess.NotificationMode switch
+            {
+                NotificationMode.Off => 0,
+                NotificationMode.ErrorOnly => 1,
+                NotificationMode.ErrorAndWarning => 2,
+                _ => 1
+            };
+        }
     }
 
     private void Add_Click(object sender, RoutedEventArgs e)
@@ -30,19 +67,40 @@ public partial class AddProcessDialog : Window
             return;
         }
 
-        var definition = new ProcessDefinition
+        ProcessDefinition definition;
+
+        if (IsEditMode)
         {
-            Name = TxtName.Text.Trim(),
-            Command = TxtCommand.Text.Trim(),
-            Arguments = TxtArguments.Text.Trim(),
-            WorkingDirectory = TxtWorkingDir.Text.Trim(),
-            AutoRestartOnCrash = ChkAutoRestart.IsChecked == true,
-            MaxRestartAttempts = int.TryParse(TxtMaxRetries.Text, out var mr) ? mr : 3,
-            RestartDelaySeconds = int.TryParse(TxtRestartDelay.Text, out var rd) ? rd : 5,
-            StartupDelaySeconds = int.TryParse(TxtStartupDelay.Text, out var sd) ? sd : 0,
-            AutoStartWithProject = ChkAutoStartWithProject.IsChecked == true,
-            NotificationMode = ParseNotificationMode()
-        };
+            // Edit modu: mevcut definition'ı güncelle
+            definition = _editingProcess!;
+            definition.Name = TxtName.Text.Trim();
+            definition.Command = TxtCommand.Text.Trim();
+            definition.Arguments = TxtArguments.Text.Trim();
+            definition.WorkingDirectory = TxtWorkingDir.Text.Trim();
+            definition.AutoRestartOnCrash = ChkAutoRestart.IsChecked == true;
+            definition.MaxRestartAttempts = int.TryParse(TxtMaxRetries.Text, out var mr2) ? mr2 : 3;
+            definition.RestartDelaySeconds = int.TryParse(TxtRestartDelay.Text, out var rd2) ? rd2 : 5;
+            definition.StartupDelaySeconds = int.TryParse(TxtStartupDelay.Text, out var sd2) ? sd2 : 0;
+            definition.AutoStartWithProject = ChkAutoStartWithProject.IsChecked == true;
+            definition.NotificationMode = ParseNotificationMode();
+            definition.EnvironmentVariables.Clear();
+        }
+        else
+        {
+            definition = new ProcessDefinition
+            {
+                Name = TxtName.Text.Trim(),
+                Command = TxtCommand.Text.Trim(),
+                Arguments = TxtArguments.Text.Trim(),
+                WorkingDirectory = TxtWorkingDir.Text.Trim(),
+                AutoRestartOnCrash = ChkAutoRestart.IsChecked == true,
+                MaxRestartAttempts = int.TryParse(TxtMaxRetries.Text, out var mr) ? mr : 3,
+                RestartDelaySeconds = int.TryParse(TxtRestartDelay.Text, out var rd) ? rd : 5,
+                StartupDelaySeconds = int.TryParse(TxtStartupDelay.Text, out var sd) ? sd : 0,
+                AutoStartWithProject = ChkAutoStartWithProject.IsChecked == true,
+                NotificationMode = ParseNotificationMode()
+            };
+        }
 
         // Parse environment variables
         var envText = TxtEnvVars.Text.Trim();

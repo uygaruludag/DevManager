@@ -30,4 +30,10 @@ public interface IProcessManagerService
     Task<int> DetectAndAdoptOrphansAsync(IEnumerable<ProcessDefinition> definitions);
 
     event EventHandler<ProcessInstance>? ProcessStateChanged;
+
+    /// <summary>
+    /// Port çakışması tespit edildiğinde tetiklenir.
+    /// UI bu event'i dinleyerek kullanıcıya sorar ve KillRequested'ı set eder.
+    /// </summary>
+    event EventHandler<PortConflictEventArgs>? PortConflictDetected;
 }

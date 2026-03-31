@@ -42,6 +42,17 @@ public class NotificationService : INotificationService
         @"\b(SELECT|INSERT\s+INTO|UPDATE\s+\w+\s+SET|DELETE\s+FROM|CREATE\s+TABLE|ALTER\s+TABLE|DROP\s+TABLE|INNER\s+JOIN|LEFT\s+JOIN|RIGHT\s+JOIN|OUTER\s+JOIN|GROUP\s+BY|ORDER\s+BY|HAVING|UNION)\b",
         RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
+    // Info/Debug/Trace seviyesi log satırları — bunlarda "error" geçse bile bildirim gösterme
+    // .NET: "info:", "dbug:", "trce:"  |  Serilog: "[INF]", "[DBG]", "[VRB]"  |  Genel: "[INFO]", "[DEBUG]", "[TRACE]"
+    private static readonly Regex InfoLevelPattern = new(
+        @"(^\s*\[?(info|inf|debug|dbg|trace|trce|verbose|vrb)\]?\s*:|\[(INF|INFO|DBG|DEBUG|VRB|VERBOSE|TRC|TRACE)\])",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
+    // Tanımlayıcı/bağlam olarak "error" geçen ifadeler — gerçek hata değil
+    private static readonly Regex DescriptiveErrorPattern = new(
+        @"(error.?(handler|handling|page|boundary|controller|middleware|filter|interceptor|format|code|level|log|message|template|type|model|view|status|response|mapper|resolver|factory|provider|config|setting|option|detail|info|data|name|key|path|route|endpoint|url|icon|image|color|style|class|component|module|service|manager|helper|util|context|store|state|schema|dto|entity|converter|adapter)|\berror[_\-]|\b\w+error\b|warn(ing)?.?(handler|filter|level|threshold|suppression|banner))",
+        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+
     public event EventHandler<ProcessNotification>? NotificationReceived;
 
     public NotificationService(
@@ -82,6 +93,14 @@ public class NotificationService : INotificationService
 
         // SQL cümlelerini atla (SELECT u.LastError, Error kolon adları vb.)
         if (SqlPattern.IsMatch(text))
+            return;
+
+        // Info/Debug seviyesi log satırlarını atla — "error" geçse bile gerçek hata değil
+        if (InfoLevelPattern.IsMatch(text))
+            return;
+
+        // Tanımlayıcı olarak error/warning geçen satırları atla (ErrorHandler, error_page vb.)
+        if (DescriptiveErrorPattern.IsMatch(text) && !HasRealErrorIndicator(text))
             return;
 
         NotificationLevel? level = null;
@@ -142,6 +161,18 @@ public class NotificationService : INotificationService
         );
 
         NotificationReceived?.Invoke(this, notification);
+    }
+
+    /// <summary>
+    /// Tanımlayıcı "error" geçen satırlarda gerçek hata göstergesi var mı kontrol et.
+    /// Örn: "ErrorHandler registered" → false, "ErrorHandler threw exception" → true
+    /// </summary>
+    private static bool HasRealErrorIndicator(string text)
+    {
+        // Gerçek hata göstergeleri: exception, threw, failed, stack trace, unhandled, fatal, crash
+        return Regex.IsMatch(text,
+            @"\b(threw|exception|unhandled|fatal|crash(ed)?|stack\s*trace|fail(ed|ure)|abort(ed)?)\b",
+            RegexOptions.IgnoreCase);
     }
 
     /// <summary>

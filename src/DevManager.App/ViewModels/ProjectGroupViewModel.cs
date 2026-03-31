@@ -28,6 +28,9 @@ public partial class ProjectGroupViewModel : ObservableObject
     [ObservableProperty]
     private bool _isExpanded = true;
 
+    partial void OnNameChanged(string value) => _project.Name = value;
+    partial void OnColorChanged(string value) => _project.Color = value;
+
     public ObservableCollection<ProcessViewModel> Processes { get; } = [];
 
     public int RunningCount => Processes.Count(p => p.State == ProcessState.Running);

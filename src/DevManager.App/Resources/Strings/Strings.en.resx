@@ -72,6 +72,9 @@
   <data name="Project_AddProcess" xml:space="preserve">
     <value>Add Process</value>
   </data>
+  <data name="Project_Edit" xml:space="preserve">
+    <value>Edit Project</value>
+  </data>
   <data name="Project_Delete" xml:space="preserve">
     <value>Delete Project</value>
   </data>
@@ -97,6 +100,9 @@
   </data>
   <data name="Process_CopyLogs" xml:space="preserve">
     <value>Copy Logs</value>
+  </data>
+  <data name="Process_Edit" xml:space="preserve">
+    <value>Edit Process</value>
   </data>
   <data name="Process_Delete" xml:space="preserve">
     <value>Delete Process</value>
@@ -289,6 +295,23 @@
     <value>Indigo</value>
   </data>
 
+  <!-- Edit Dialogs -->
+  <data name="Dialog_EditProject_Title" xml:space="preserve">
+    <value>Edit Project</value>
+  </data>
+  <data name="Dialog_EditProject_Header" xml:space="preserve">
+    <value>Edit Project</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Dialog_EditProcess_Title" xml:space="preserve">
+    <value>Edit Process</value>
+  </data>
+  <data name="Dialog_EditProcess_Header" xml:space="preserve">
+    <value>Edit Process</value>
+  </data>
+
   <!-- Common -->
   <data name="Warning_Title" xml:space="preserve">
     <value>Warning</value>
@@ -372,5 +395,17 @@
   </data>
   <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
     <value>Errors + Warnings</value>
+  </data>
+
+  <!-- Port Conflict -->
+  <data name="PortConflict_Title" xml:space="preserve">
+    <value>Port Conflict</value>
+  </data>
+  <data name="PortConflict_Message" xml:space="preserve">
+    <value>"{0}" is about to start but port {1} is already in use.
+
+Conflicting process: {2} (PID: {3})
+
+Do you want to stop this process and continue?</value>
   </data>
 </root>

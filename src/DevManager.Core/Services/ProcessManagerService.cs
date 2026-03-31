@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Management;
+using System.Net.NetworkInformation;
 using DevManager.Core.Models;
 using DevManager.Core.Services.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -15,6 +16,7 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
     private readonly ConcurrentDictionary<Guid, ProcessDefinition> _definitions = new();
 
     public event EventHandler<ProcessInstance>? ProcessStateChanged;
+    public event EventHandler<PortConflictEventArgs>? PortConflictDetected;
 
     public IReadOnlyDictionary<Guid, ProcessInstance> Instances =>
         _processes.ToDictionary(kv => kv.Key, kv => kv.Value.Instance);
@@ -54,6 +56,14 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
         }
 
         _definitions[definition.Id] = definition;
+
+        // Port çakışması kontrolü
+        if (definition.HealthCheck?.Port > 0)
+        {
+            var conflictResolved = await CheckAndResolvePortConflictAsync(definition);
+            if (!conflictResolved)
+                return; // Kullanıcı iptal etti
+        }
 
         var instance = new ProcessInstance
         {
@@ -410,6 +420,159 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
         catch { }
         return false;
     }
+
+    #region Port Conflict Detection
+
+    /// <summary>
+    /// Port kullanılıyorsa çakışan process'i bulur ve kullanıcıya sorar.
+    /// true = devam et (port boş veya çakışma çözüldü), false = kullanıcı iptal etti.
+    /// </summary>
+    private async Task<bool> CheckAndResolvePortConflictAsync(ProcessDefinition definition)
+    {
+        var port = definition.HealthCheck!.Port;
+
+        if (!IsPortInUse(port))
+            return true;
+
+        // Port'u kullanan process'i bul
+        var conflictingPid = await Task.Run(() => GetPidUsingPort(port));
+        if (conflictingPid == null)
+            return true; // Port kullanımda ama PID bulunamadı, devam et
+
+        // Kendi yönettiğimiz bir process mi kontrol et
+        var ownedProcess = _processes.Values.FirstOrDefault(mp =>
+            mp.Instance.ProcessId == conflictingPid.Value &&
+            mp.Instance.State == ProcessState.Running);
+
+        string? conflictingName = null;
+        try
+        {
+            var proc = Process.GetProcessById(conflictingPid.Value);
+            conflictingName = proc.ProcessName;
+        }
+        catch { }
+
+        var args = new PortConflictEventArgs
+        {
+            ProcessDefinitionId = definition.Id,
+            ProcessName = definition.Name,
+            Port = port,
+            ConflictingPid = conflictingPid.Value,
+            ConflictingProcessName = conflictingName
+        };
+
+        _logService.AppendLog(definition.Id,
+            $"Port {port} zaten kullanımda (PID: {conflictingPid.Value}, Process: {conflictingName ?? "?"})",
+            LogEntryType.System);
+
+        // UI'a sor
+        PortConflictDetected?.Invoke(this, args);
+
+        if (!args.KillRequested)
+        {
+            _logService.AppendLog(definition.Id,
+                "Port çakışması nedeniyle başlatma iptal edildi",
+                LogEntryType.System);
+            return false;
+        }
+
+        // Çakışan process'i öldür
+        try
+        {
+            // Eğer kendi yönettiğimiz bir process ise, önce graceful durdur
+            if (ownedProcess != null)
+            {
+                await StopProcessAsync(ownedProcess.Instance.DefinitionId, force: true);
+            }
+            else
+            {
+                var proc = Process.GetProcessById(conflictingPid.Value);
+                proc.Kill(entireProcessTree: true);
+                await WaitForExitSafeAsync(proc, TimeSpan.FromSeconds(5));
+            }
+
+            _logService.AppendLog(definition.Id,
+                $"Port {port} üzerindeki process (PID: {conflictingPid.Value}) durduruldu",
+                LogEntryType.System);
+
+            // Port'un serbest kalması için kısa bekle
+            await Task.Delay(500);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            _logService.AppendLog(definition.Id,
+                $"Çakışan process durdurulamadı: {ex.Message}",
+                LogEntryType.System);
+            _logger.LogWarning(ex, "Port conflict process kill failed for PID {Pid}", conflictingPid.Value);
+            return false;
+        }
+    }
+
+    private static bool IsPortInUse(int port)
+    {
+        try
+        {
+            var ipProperties = IPGlobalProperties.GetIPGlobalProperties();
+            var listeners = ipProperties.GetActiveTcpListeners();
+            return listeners.Any(ep => ep.Port == port);
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Belirtilen port'u dinleyen process'in PID'sini bulur (netstat üzerinden).
+    /// </summary>
+    private static int? GetPidUsingPort(int port)
+    {
+        try
+        {
+            var psi = new ProcessStartInfo
+            {
+                FileName = "netstat",
+                Arguments = "-ano",
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardOutput = true
+            };
+
+            using var proc = Process.Start(psi);
+            if (proc == null) return null;
+
+            var output = proc.StandardOutput.ReadToEnd();
+            proc.WaitForExit(5000);
+
+            // LISTENING satırında port'u bul
+            foreach (var line in output.Split('\n'))
+            {
+                var trimmed = line.Trim();
+                if (!trimmed.Contains("LISTENING")) continue;
+
+                // Format: TCP    0.0.0.0:5000    0.0.0.0:0    LISTENING    12345
+                var parts = trimmed.Split([' '], StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length < 5) continue;
+
+                var localAddress = parts[1];
+                var colonIdx = localAddress.LastIndexOf(':');
+                if (colonIdx < 0) continue;
+
+                if (int.TryParse(localAddress[(colonIdx + 1)..], out var listenPort) &&
+                    listenPort == port &&
+                    int.TryParse(parts[^1], out var pid))
+                {
+                    return pid;
+                }
+            }
+        }
+        catch { }
+
+        return null;
+    }
+
+    #endregion
 
     #region Orphan Process Detection
 

@@ -137,6 +137,43 @@ public partial class MainViewModel : ObservableObject
     }
 
     [RelayCommand]
+    private void EditProject()
+    {
+        if (SelectedProject == null) return;
+
+        var dialog = new Views.Dialogs.AddProjectDialog(SelectedProject.Project);
+        if (dialog.ShowDialog() == true && dialog.Result != null)
+        {
+            // ViewModel property'lerini güncelle
+            SelectedProject.Name = dialog.Result.Name;
+            SelectedProject.Color = dialog.Result.Color;
+
+            // Yeni scan edilmiş processler varsa ekle
+            var existingIds = SelectedProject.Processes.Select(p => p.Id).ToHashSet();
+            foreach (var procDef in dialog.Result.Processes.Where(p => !existingIds.Contains(p.Id)))
+            {
+                SelectedProject.AddProcess(procDef);
+            }
+
+            _ = SaveConfigAsync();
+        }
+    }
+
+    [RelayCommand]
+    private void EditProcess(ProcessViewModel? processVm)
+    {
+        if (SelectedProject == null || processVm == null) return;
+
+        var dialog = new Views.Dialogs.AddProcessDialog(processVm.Definition);
+        if (dialog.ShowDialog() == true && dialog.Result != null)
+        {
+            // ViewModel adını güncelle
+            processVm.Name = dialog.Result.Name;
+            _ = SaveConfigAsync();
+        }
+    }
+
+    [RelayCommand]
     private async Task DeleteProjectAsync()
     {
         if (SelectedProject == null) return;

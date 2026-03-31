@@ -986,5 +986,59 @@ namespace DevManager.App.Localization {
                 return ResourceManager.GetString("NotificationMode_ErrorAndWarning", resourceCulture);
             }
         }
+
+        public static string Project_Edit {
+            get {
+                return ResourceManager.GetString("Project_Edit", resourceCulture);
+            }
+        }
+
+        public static string Process_Edit {
+            get {
+                return ResourceManager.GetString("Process_Edit", resourceCulture);
+            }
+        }
+
+        public static string Dialog_EditProject_Title {
+            get {
+                return ResourceManager.GetString("Dialog_EditProject_Title", resourceCulture);
+            }
+        }
+
+        public static string Dialog_EditProject_Header {
+            get {
+                return ResourceManager.GetString("Dialog_EditProject_Header", resourceCulture);
+            }
+        }
+
+        public static string Dialog_Save {
+            get {
+                return ResourceManager.GetString("Dialog_Save", resourceCulture);
+            }
+        }
+
+        public static string Dialog_EditProcess_Title {
+            get {
+                return ResourceManager.GetString("Dialog_EditProcess_Title", resourceCulture);
+            }
+        }
+
+        public static string Dialog_EditProcess_Header {
+            get {
+                return ResourceManager.GetString("Dialog_EditProcess_Header", resourceCulture);
+            }
+        }
+
+        public static string PortConflict_Title {
+            get {
+                return ResourceManager.GetString("PortConflict_Title", resourceCulture);
+            }
+        }
+
+        public static string PortConflict_Message {
+            get {
+                return ResourceManager.GetString("PortConflict_Message", resourceCulture);
+            }
+        }
     }
 }
