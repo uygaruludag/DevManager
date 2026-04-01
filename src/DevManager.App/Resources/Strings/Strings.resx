@@ -390,8 +390,11 @@
   <data name="NotificationMode_Off" xml:space="preserve">
     <value>Kapalı</value>
   </data>
+  <data name="NotificationMode_CrashOnly" xml:space="preserve">
+    <value>Sadece Çökme</value>
+  </data>
   <data name="NotificationMode_ErrorOnly" xml:space="preserve">
-    <value>Sadece Hatalar</value>
+    <value>Çökme + Hatalar</value>
   </data>
   <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
     <value>Hata + Uyarı</value>

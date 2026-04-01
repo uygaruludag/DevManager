@@ -390,8 +390,11 @@
   <data name="NotificationMode_Off" xml:space="preserve">
     <value>Off</value>
   </data>
+  <data name="NotificationMode_CrashOnly" xml:space="preserve">
+    <value>Crash Only</value>
+  </data>
   <data name="NotificationMode_ErrorOnly" xml:space="preserve">
-    <value>Errors Only</value>
+    <value>Crash + Errors</value>
   </data>
   <data name="NotificationMode_ErrorAndWarning" xml:space="preserve">
     <value>Errors + Warnings</value>

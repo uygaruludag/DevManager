@@ -46,8 +46,9 @@ public partial class AddProcessDialog : Window
             CmbNotificationMode.SelectedIndex = existingProcess.NotificationMode switch
             {
                 NotificationMode.Off => 0,
-                NotificationMode.ErrorOnly => 1,
-                NotificationMode.ErrorAndWarning => 2,
+                NotificationMode.CrashOnly => 1,
+                NotificationMode.ErrorOnly => 2,
+                NotificationMode.ErrorAndWarning => 3,
                 _ => 1
             };
         }
@@ -143,8 +144,10 @@ public partial class AddProcessDialog : Window
         return tag switch
         {
             "Off" => NotificationMode.Off,
+            "CrashOnly" => NotificationMode.CrashOnly,
+            "ErrorOnly" => NotificationMode.ErrorOnly,
             "ErrorAndWarning" => NotificationMode.ErrorAndWarning,
-            _ => NotificationMode.ErrorOnly
+            _ => NotificationMode.CrashOnly
         };
     }
 

@@ -379,8 +379,11 @@
   <data name="NotificationMode_Off">
     <value>Désactivé</value>
   </data>
+  <data name="NotificationMode_CrashOnly">
+    <value>Plantage uniquement</value>
+  </data>
   <data name="NotificationMode_ErrorOnly">
-    <value>Erreurs uniquement</value>
+    <value>Plantage + Erreurs</value>
   </data>
   <data name="NotificationMode_ErrorAndWarning">
     <value>Erreurs + Avertissements</value>

@@ -975,6 +975,12 @@ namespace DevManager.App.Localization {
             }
         }
 
+        public static string NotificationMode_CrashOnly {
+            get {
+                return ResourceManager.GetString("NotificationMode_CrashOnly", resourceCulture);
+            }
+        }
+
         public static string NotificationMode_ErrorOnly {
             get {
                 return ResourceManager.GetString("NotificationMode_ErrorOnly", resourceCulture);

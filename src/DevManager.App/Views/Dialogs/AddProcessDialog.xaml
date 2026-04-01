@@ -106,6 +106,7 @@
                            VerticalAlignment="Center" Margin="0,0,12,0"/>
                 <ComboBox x:Name="CmbNotificationMode" SelectedIndex="1" Width="180">
                     <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_Off}" Tag="Off"/>
+                    <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_CrashOnly}" Tag="CrashOnly"/>
                     <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_ErrorOnly}" Tag="ErrorOnly"/>
                     <ComboBoxItem Content="{x:Static strings:Strings.NotificationMode_ErrorAndWarning}" Tag="ErrorAndWarning"/>
                 </ComboBox>

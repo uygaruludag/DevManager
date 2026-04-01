@@ -379,8 +379,11 @@
   <data name="NotificationMode_Off">
     <value>Aus</value>
   </data>
+  <data name="NotificationMode_CrashOnly">
+    <value>Nur Absturz</value>
+  </data>
   <data name="NotificationMode_ErrorOnly">
-    <value>Nur Fehler</value>
+    <value>Absturz + Fehler</value>
   </data>
   <data name="NotificationMode_ErrorAndWarning">
     <value>Fehler + Warnungen</value>

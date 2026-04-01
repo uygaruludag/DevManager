@@ -80,7 +80,7 @@ public class NotificationService : INotificationService
 
         // Process bildirim modunu kontrol et
         var mode = await GetNotificationModeAsync(entry.ProcessDefinitionId);
-        if (mode == NotificationMode.Off)
+        if (mode is NotificationMode.Off or NotificationMode.CrashOnly)
             return;
 
         var text = entry.Text;
@@ -230,11 +230,11 @@ public class NotificationService : INotificationService
                 .SelectMany(p => p.Processes)
                 .FirstOrDefault(p => p.Id == processDefinitionId);
 
-            return process?.NotificationMode ?? NotificationMode.ErrorOnly;
+            return process?.NotificationMode ?? NotificationMode.CrashOnly;
         }
         catch
         {
-            return NotificationMode.ErrorOnly;
+            return NotificationMode.CrashOnly;
         }
     }
 
