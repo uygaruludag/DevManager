@@ -87,6 +87,7 @@ public partial class ProcessViewModel : ObservableObject
     }
 
     private bool CanStart => State is ProcessState.Stopped or ProcessState.Crashed;
+    // Note: Restarting state'de StartCommand zaten disabled — service guard da bunu engeller
     private bool CanStop => State is ProcessState.Running or ProcessState.Starting;
 
     [RelayCommand(CanExecute = nameof(CanStart))]

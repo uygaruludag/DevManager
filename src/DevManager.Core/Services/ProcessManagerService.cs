@@ -14,6 +14,7 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
     private readonly ILogger<ProcessManagerService> _logger;
     private readonly ConcurrentDictionary<Guid, ManagedProcess> _processes = new();
     private readonly ConcurrentDictionary<Guid, ProcessDefinition> _definitions = new();
+    private readonly ConcurrentDictionary<Guid, CancellationTokenSource> _restartCts = new();
 
     public event EventHandler<ProcessInstance>? ProcessStateChanged;
     public event EventHandler<PortConflictEventArgs>? PortConflictDetected;
@@ -50,10 +51,13 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
     public async Task StartProcessAsync(ProcessDefinition definition)
     {
         if (_processes.TryGetValue(definition.Id, out var existing) &&
-            existing.Instance.State is ProcessState.Running or ProcessState.Starting)
+            existing.Instance.State is ProcessState.Running or ProcessState.Starting or ProcessState.Restarting)
         {
             return;
         }
+
+        // Bekleyen auto-restart varsa iptal et
+        CancelPendingRestart(definition.Id);
 
         _definitions[definition.Id] = definition;
 
@@ -134,6 +138,9 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
 
     public async Task StopProcessAsync(Guid definitionId, bool force = false)
     {
+        // Bekleyen auto-restart varsa iptal et
+        CancelPendingRestart(definitionId);
+
         if (!_processes.TryGetValue(definitionId, out var managed))
             return;
 
@@ -330,7 +337,9 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
                 // Auto-restart logic
                 if (_definitions.TryGetValue(definitionId, out var definition) && definition.AutoRestartOnCrash)
                 {
-                    _ = HandleAutoRestartAsync(definitionId, definition, instance);
+                    var cts = new CancellationTokenSource();
+                    _restartCts[definitionId] = cts;
+                    _ = HandleAutoRestartAsync(definitionId, definition, instance, cts.Token);
                 }
             }
 
@@ -342,7 +351,7 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
         }
     }
 
-    private async Task HandleAutoRestartAsync(Guid definitionId, ProcessDefinition definition, ProcessInstance instance)
+    private async Task HandleAutoRestartAsync(Guid definitionId, ProcessDefinition definition, ProcessInstance instance, CancellationToken cancellationToken)
     {
         // Reset restart count if outside the window
         if (instance.LastRestartWindowStart == null ||
@@ -368,9 +377,29 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
             $"Auto-restarting in {definition.RestartDelaySeconds}s (attempt {instance.RestartCount}/{definition.MaxRestartAttempts})",
             LogEntryType.System);
 
-        await Task.Delay(TimeSpan.FromSeconds(definition.RestartDelaySeconds));
+        try
+        {
+            await Task.Delay(TimeSpan.FromSeconds(definition.RestartDelaySeconds), cancellationToken);
+        }
+        catch (TaskCanceledException)
+        {
+            _logService.AppendLog(definitionId, "Auto-restart iptal edildi", LogEntryType.System);
+            return;
+        }
+
+        if (cancellationToken.IsCancellationRequested)
+            return;
 
         await StartProcessAsync(definition);
+    }
+
+    private void CancelPendingRestart(Guid definitionId)
+    {
+        if (_restartCts.TryRemove(definitionId, out var cts))
+        {
+            cts.Cancel();
+            cts.Dispose();
+        }
     }
 
     private void CompleteStop(ManagedProcess managed, Guid definitionId)
@@ -764,6 +793,13 @@ public class ProcessManagerService : IProcessManagerService, IDisposable
 
     public void Dispose()
     {
+        // Bekleyen auto-restart'ları iptal et
+        foreach (var cts in _restartCts.Values)
+        {
+            try { cts.Cancel(); cts.Dispose(); } catch { }
+        }
+        _restartCts.Clear();
+
         foreach (var mp in _processes.Values)
         {
             try
