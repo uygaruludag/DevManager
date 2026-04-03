@@ -389,6 +389,27 @@
     <value>Fehler + Warnungen</value>
   </data>
 
+  <!-- Process Monitor -->
+  <data name="Monitor_Title"><value>Prozessmonitor</value></data>
+  <data name="Monitor_Scan"><value>Scannen</value></data>
+  <data name="Monitor_Scanning"><value>Wird gescannt...</value></data>
+  <data name="Monitor_Found"><value>{0} Prozesse gefunden</value></data>
+  <data name="Monitor_Filter"><value>Filtern (Name, Port, Projekt...)</value></data>
+  <data name="Monitor_Col_PID"><value>PID</value></data>
+  <data name="Monitor_Col_Name"><value>Prozess</value></data>
+  <data name="Monitor_Col_Ports"><value>Ports</value></data>
+  <data name="Monitor_Col_Memory"><value>Speicher</value></data>
+  <data name="Monitor_Col_Project"><value>Projekt</value></data>
+  <data name="Monitor_Col_Command"><value>Befehl</value></data>
+  <data name="Monitor_Kill"><value>Beenden</value></data>
+  <data name="Monitor_KillConfirm"><value>{0} (PID: {1}) beenden?</value></data>
+  <data name="Monitor_KillTitle"><value>Prozess beenden</value></data>
+  <data name="Monitor_Killed"><value>PID {0} beendet</value></data>
+  <data name="Monitor_KillFailed"><value>PID {0} konnte nicht beendet werden</value></data>
+  <data name="Monitor_ScanPrompt"><value>Klicken Sie auf "Scannen" um laufende Entwicklungsprozesse zu sehen</value></data>
+  <data name="Nav_Projects"><value>Projekte</value></data>
+  <data name="Nav_Monitor"><value>Prozessmonitor</value></data>
+
   <!-- Port Conflict -->
   <data name="PortConflict_Title">
     <value>Port-Konflikt</value>

@@ -400,6 +400,65 @@
     <value>Errors + Warnings</value>
   </data>
 
+  <!-- Process Monitor -->
+  <data name="Monitor_Title" xml:space="preserve">
+    <value>Process Monitor</value>
+  </data>
+  <data name="Monitor_Scan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="Monitor_Scanning" xml:space="preserve">
+    <value>Scanning...</value>
+  </data>
+  <data name="Monitor_Found" xml:space="preserve">
+    <value>{0} processes found</value>
+  </data>
+  <data name="Monitor_Filter" xml:space="preserve">
+    <value>Filter (name, port, project...)</value>
+  </data>
+  <data name="Monitor_Col_PID" xml:space="preserve">
+    <value>PID</value>
+  </data>
+  <data name="Monitor_Col_Name" xml:space="preserve">
+    <value>Process</value>
+  </data>
+  <data name="Monitor_Col_Ports" xml:space="preserve">
+    <value>Ports</value>
+  </data>
+  <data name="Monitor_Col_Memory" xml:space="preserve">
+    <value>Memory</value>
+  </data>
+  <data name="Monitor_Col_Project" xml:space="preserve">
+    <value>Project</value>
+  </data>
+  <data name="Monitor_Col_Command" xml:space="preserve">
+    <value>Command</value>
+  </data>
+  <data name="Monitor_Kill" xml:space="preserve">
+    <value>Kill</value>
+  </data>
+  <data name="Monitor_KillConfirm" xml:space="preserve">
+    <value>Kill {0} (PID: {1})?</value>
+  </data>
+  <data name="Monitor_KillTitle" xml:space="preserve">
+    <value>Kill Process</value>
+  </data>
+  <data name="Monitor_Killed" xml:space="preserve">
+    <value>PID {0} killed</value>
+  </data>
+  <data name="Monitor_KillFailed" xml:space="preserve">
+    <value>Failed to kill PID {0}</value>
+  </data>
+  <data name="Monitor_ScanPrompt" xml:space="preserve">
+    <value>Click "Scan" to see running development processes</value>
+  </data>
+  <data name="Nav_Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="Nav_Monitor" xml:space="preserve">
+    <value>Process Monitor</value>
+  </data>
+
   <!-- Port Conflict -->
   <data name="PortConflict_Title" xml:space="preserve">
     <value>Port Conflict</value>

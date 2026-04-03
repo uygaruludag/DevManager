@@ -89,66 +89,123 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Left Sidebar: Project List -->
+            <!-- Left Sidebar -->
             <Border Grid.Column="0" BorderThickness="0,0,1,0"
                     BorderBrush="{DynamicResource MaterialDesignDivider}"
                     Background="{DynamicResource MaterialDesignCardBackground}">
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Top" Margin="12,12,12,8">
-                        <TextBlock Text="{x:Static strings:Strings.Projects_Header}" FontWeight="Bold" FontSize="12"
-                                   Opacity="0.6" Margin="0,0,0,8"/>
-                    </StackPanel>
+                    <!-- Navigation Tabs -->
+                    <UniformGrid DockPanel.Dock="Top" Rows="1" Margin="8,8,8,0">
+                        <Button Content="{x:Static strings:Strings.Nav_Projects}"
+                                Command="{Binding ShowProjectsCommand}"
+                                Margin="0,0,4,0"
+                                Height="32" FontSize="12"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.Tag>
+                                <Binding Path="IsProjectsView"/>
+                            </Button.Tag>
+                            <Button.Resources>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsProjectsView}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button Content="{x:Static strings:Strings.Nav_Monitor}"
+                                Command="{Binding ShowMonitorCommand}"
+                                Margin="4,0,0,0"
+                                Height="32" FontSize="12"
+                                Style="{StaticResource MaterialDesignFlatButton}">
+                            <Button.Resources>
+                                <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatButton}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMonitorView}" Value="True">
+                                            <Setter Property="Background" Value="{DynamicResource MaterialDesignDivider}"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                    </UniformGrid>
 
-                    <Button DockPanel.Dock="Bottom"
-                            Content="{x:Static strings:Strings.Projects_AddProject}"
-                            Command="{Binding AddProjectCommand}"
-                            Style="{StaticResource MaterialDesignOutlinedButton}"
-                            Margin="12,8,12,12"
-                            HorizontalAlignment="Stretch"/>
+                    <!-- Projects View (sidebar content) -->
+                    <Grid Visibility="{Binding IsProjectsView, Converter={StaticResource BoolToVisConverter}}">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Top" Margin="12,12,12,8">
+                                <TextBlock Text="{x:Static strings:Strings.Projects_Header}" FontWeight="Bold" FontSize="12"
+                                           Opacity="0.6" Margin="0,0,0,8"/>
+                            </StackPanel>
 
-                    <ListBox ItemsSource="{Binding Projects}"
-                             SelectedItem="{Binding SelectedProject}"
-                             Margin="0,0,0,0"
-                             Background="Transparent"
-                             BorderThickness="0">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate DataType="{x:Type vm:ProjectGroupViewModel}">
-                                <Grid Margin="8,6">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Ellipse Grid.Column="0" Width="10" Height="10"
-                                             Margin="0,0,10,0" VerticalAlignment="Center">
-                                        <Ellipse.Fill>
-                                            <SolidColorBrush Color="{Binding Color}"/>
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-                                    <TextBlock Grid.Column="1" Text="{Binding Name}"
-                                               FontSize="14" VerticalAlignment="Center"
-                                               Margin="0,0,12,0"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding StatusText}"
-                                               FontSize="12" Opacity="0.6"
-                                               VerticalAlignment="Center"
-                                               Margin="4,0,4,0"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                            <Button DockPanel.Dock="Bottom"
+                                    Content="{x:Static strings:Strings.Projects_AddProject}"
+                                    Command="{Binding AddProjectCommand}"
+                                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                                    Margin="12,8,12,12"
+                                    HorizontalAlignment="Stretch"/>
+
+                            <ListBox ItemsSource="{Binding Projects}"
+                                     SelectedItem="{Binding SelectedProject}"
+                                     Margin="0,0,0,0"
+                                     Background="Transparent"
+                                     BorderThickness="0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate DataType="{x:Type vm:ProjectGroupViewModel}">
+                                        <Grid Margin="8,6">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Ellipse Grid.Column="0" Width="10" Height="10"
+                                                     Margin="0,0,10,0" VerticalAlignment="Center">
+                                                <Ellipse.Fill>
+                                                    <SolidColorBrush Color="{Binding Color}"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                            <TextBlock Grid.Column="1" Text="{Binding Name}"
+                                                       FontSize="14" VerticalAlignment="Center"
+                                                       Margin="0,0,12,0"/>
+                                            <TextBlock Grid.Column="2" Text="{Binding StatusText}"
+                                                       FontSize="12" Opacity="0.6"
+                                                       VerticalAlignment="Center"
+                                                       Margin="4,0,4,0"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DockPanel>
+                    </Grid>
+
+                    <!-- Monitor View (sidebar: info text) -->
+                    <Grid Visibility="{Binding IsMonitorView, Converter={StaticResource BoolToVisConverter}}">
+                        <StackPanel Margin="12,12">
+                            <TextBlock Text="{x:Static strings:Strings.Monitor_Title}" FontWeight="Bold" FontSize="12"
+                                       Opacity="0.6" Margin="0,0,0,12"/>
+                            <TextBlock Text="{x:Static strings:Strings.Monitor_ScanPrompt}"
+                                       TextWrapping="Wrap" Opacity="0.5" FontSize="12"/>
+                        </StackPanel>
+                    </Grid>
                 </DockPanel>
             </Border>
 
-            <!-- Right: Selected Project Details -->
+            <!-- Right Panel -->
             <Grid Grid.Column="1">
-                <!-- No project selected -->
-                <TextBlock Text="{x:Static strings:Strings.Projects_SelectPrompt}"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"
-                           Opacity="0.5" FontSize="16"
-                           Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}, ConverterParameter=Invert}"/>
 
-                <!-- Project content -->
-                <DockPanel Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}}">
+                <!-- ===== PROJECTS VIEW ===== -->
+                <Grid Visibility="{Binding IsProjectsView, Converter={StaticResource BoolToVisConverter}}">
+                    <!-- No project selected -->
+                    <TextBlock Text="{x:Static strings:Strings.Projects_SelectPrompt}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               Opacity="0.5" FontSize="16"
+                               Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}, ConverterParameter=Invert}"/>
+
+                    <!-- Project content -->
+                    <DockPanel Visibility="{Binding HasSelectedProject, Converter={StaticResource BoolToVisConverter}}">
                     <!-- Project header -->
                     <Border DockPanel.Dock="Top" Padding="16,12"
                             Background="{DynamicResource MaterialDesignCardBackground}"
@@ -377,6 +434,106 @@
                         </ItemsControl>
                     </ScrollViewer>
                 </DockPanel>
+                </Grid>
+
+                <!-- ===== MONITOR VIEW ===== -->
+                <DockPanel Visibility="{Binding IsMonitorView, Converter={StaticResource BoolToVisConverter}}"
+                           DataContext="{Binding ProcessMonitor}">
+
+                    <!-- Monitor header -->
+                    <Border DockPanel.Dock="Top" Padding="16,12"
+                            Background="{DynamicResource MaterialDesignCardBackground}"
+                            BorderThickness="0,0,0,1"
+                            BorderBrush="{DynamicResource MaterialDesignDivider}">
+                        <DockPanel>
+                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="Monitor" Width="24" Height="24"
+                                                          VerticalAlignment="Center" Margin="0,0,8,0"/>
+                                <TextBlock Text="{x:Static strings:Strings.Monitor_Title}"
+                                           FontSize="18" FontWeight="SemiBold"
+                                           VerticalAlignment="Center" Margin="0,0,16,0"/>
+                                <TextBlock Text="{Binding StatusText}"
+                                           FontSize="13" Opacity="0.6"
+                                           VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <TextBox Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}"
+                                         materialDesign:HintAssist.Hint="{x:Static strings:Strings.Monitor_Filter}"
+                                         Width="250" Margin="0,0,12,0"
+                                         VerticalAlignment="Center"
+                                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                         materialDesign:TextFieldAssist.HasClearButton="True"/>
+                                <Button Content="{x:Static strings:Strings.Monitor_Scan}"
+                                        Command="{Binding ScanCommand}"
+                                        Style="{StaticResource MaterialDesignRaisedButton}"/>
+                            </StackPanel>
+                        </DockPanel>
+                    </Border>
+
+                    <!-- Process list -->
+                    <DataGrid ItemsSource="{Binding FilteredProcesses}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserSortColumns="True"
+                              CanUserReorderColumns="False"
+                              SelectionMode="Single"
+                              GridLinesVisibility="Horizontal"
+                              HeadersVisibility="Column"
+                              Background="Transparent"
+                              BorderThickness="0"
+                              FontSize="12"
+                              Margin="8">
+
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_PID}"
+                                                Binding="{Binding Pid}" Width="70"/>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_Name}"
+                                                Binding="{Binding Name}" Width="100"/>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_Ports}"
+                                                Binding="{Binding PortsDisplay}" Width="120">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#64B5F6"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_Memory}"
+                                                Binding="{Binding MemoryMb, StringFormat='{}{0:F0} MB'}" Width="80"/>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_Project}"
+                                                Binding="{Binding MatchedProjectName}" Width="120">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="#81C784"/>
+                                        <Setter Property="FontWeight" Value="SemiBold"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="{x:Static strings:Strings.Monitor_Col_Command}"
+                                                Binding="{Binding CommandLine}" Width="*">
+                                <DataGridTextColumn.ElementStyle>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Opacity" Value="0.6"/>
+                                        <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                    </Style>
+                                </DataGridTextColumn.ElementStyle>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn Header="" Width="90">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="{x:Static strings:Strings.Monitor_Kill}"
+                                                Command="{Binding DataContext.KillProcessCommand, RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                                CommandParameter="{Binding}"
+                                                Style="{StaticResource MaterialDesignOutlinedButton}"
+                                                Foreground="#F44336"
+                                                Height="26" FontSize="11" Padding="8,0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </DockPanel>
+
             </Grid>
         </Grid>
 

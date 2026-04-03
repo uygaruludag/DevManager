@@ -26,6 +26,19 @@ public partial class MainViewModel : ObservableObject
     [ObservableProperty]
     private int _selectedLanguageIndex;
 
+    /// <summary>
+    /// 0 = Projeler, 1 = Süreç İzleyici
+    /// </summary>
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsProjectsView))]
+    [NotifyPropertyChangedFor(nameof(IsMonitorView))]
+    private int _activeView;
+
+    public bool IsProjectsView => ActiveView == 0;
+    public bool IsMonitorView => ActiveView == 1;
+
+    public ProcessMonitorViewModel ProcessMonitor { get; }
+
     public ObservableCollection<ProjectGroupViewModel> Projects { get; } = [];
 
     public bool HasSelectedProject => SelectedProject != null;
@@ -43,6 +56,7 @@ public partial class MainViewModel : ObservableObject
         _configService = configService;
         _processManager = processManager;
         _logService = logService;
+        ProcessMonitor = new ProcessMonitorViewModel(configService);
 
         // Mevcut dili seç
         var currentLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
@@ -87,6 +101,16 @@ public partial class MainViewModel : ObservableObject
         {
             IsLoading = false;
         }
+    }
+
+    [RelayCommand]
+    private void ShowProjects() => ActiveView = 0;
+
+    [RelayCommand]
+    private async Task ShowMonitorAsync()
+    {
+        ActiveView = 1;
+        await ProcessMonitor.ScanCommand.ExecuteAsync(null);
     }
 
     [RelayCommand]

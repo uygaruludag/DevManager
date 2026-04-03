@@ -1035,6 +1035,64 @@ namespace DevManager.App.Localization {
             }
         }
 
+        public static string Monitor_Title {
+            get { return ResourceManager.GetString("Monitor_Title", resourceCulture); }
+        }
+        public static string Monitor_Scan {
+            get { return ResourceManager.GetString("Monitor_Scan", resourceCulture); }
+        }
+        public static string Monitor_Scanning {
+            get { return ResourceManager.GetString("Monitor_Scanning", resourceCulture); }
+        }
+        public static string Monitor_Found {
+            get { return ResourceManager.GetString("Monitor_Found", resourceCulture); }
+        }
+        public static string Monitor_Filter {
+            get { return ResourceManager.GetString("Monitor_Filter", resourceCulture); }
+        }
+        public static string Monitor_Col_PID {
+            get { return ResourceManager.GetString("Monitor_Col_PID", resourceCulture); }
+        }
+        public static string Monitor_Col_Name {
+            get { return ResourceManager.GetString("Monitor_Col_Name", resourceCulture); }
+        }
+        public static string Monitor_Col_Ports {
+            get { return ResourceManager.GetString("Monitor_Col_Ports", resourceCulture); }
+        }
+        public static string Monitor_Col_Memory {
+            get { return ResourceManager.GetString("Monitor_Col_Memory", resourceCulture); }
+        }
+        public static string Monitor_Col_Project {
+            get { return ResourceManager.GetString("Monitor_Col_Project", resourceCulture); }
+        }
+        public static string Monitor_Col_Command {
+            get { return ResourceManager.GetString("Monitor_Col_Command", resourceCulture); }
+        }
+        public static string Monitor_Kill {
+            get { return ResourceManager.GetString("Monitor_Kill", resourceCulture); }
+        }
+        public static string Monitor_KillConfirm {
+            get { return ResourceManager.GetString("Monitor_KillConfirm", resourceCulture); }
+        }
+        public static string Monitor_KillTitle {
+            get { return ResourceManager.GetString("Monitor_KillTitle", resourceCulture); }
+        }
+        public static string Monitor_Killed {
+            get { return ResourceManager.GetString("Monitor_Killed", resourceCulture); }
+        }
+        public static string Monitor_KillFailed {
+            get { return ResourceManager.GetString("Monitor_KillFailed", resourceCulture); }
+        }
+        public static string Monitor_ScanPrompt {
+            get { return ResourceManager.GetString("Monitor_ScanPrompt", resourceCulture); }
+        }
+        public static string Nav_Projects {
+            get { return ResourceManager.GetString("Nav_Projects", resourceCulture); }
+        }
+        public static string Nav_Monitor {
+            get { return ResourceManager.GetString("Nav_Monitor", resourceCulture); }
+        }
+
         public static string PortConflict_Title {
             get {
                 return ResourceManager.GetString("PortConflict_Title", resourceCulture);
